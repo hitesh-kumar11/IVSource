@@ -1,0 +1,257 @@
+﻿@*@model IEnumerable<IVSource.Models.IvsVisaNoteAndFeesList>*@
+@model IEnumerable<IVSource.Models.HomePage>
+
+@{
+    //ViewData["Title"] = Model.bCountryName;
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+
+<style>
+    input, textarea {
+        width: 100%;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+
+<div class="forum_row_rs">
+    <h2 style="color:black; margin-top: -2%;">Visa Note and Fees</h2>
+    @foreach (var obj in Model)
+    {
+        if (obj.CityDetails.Count() > 0)
+        {
+            <button class="accordion">@obj.CityName &nbsp; <span class="blkDD"> <i class="fa fa-caret-down"></i></span></button>
+        }
+        <div class="panel" style="display: none;">
+            <br />
+            @if (obj.CityDetailsInformation.Count() > 0 && !string.IsNullOrWhiteSpace(obj.CityDetailsInformation.First().VisaInformation))
+            {
+                @Html.Raw(System.Net.WebUtility.HtmlDecode(@obj.CityDetailsInformation.First().VisaInformation).Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty))
+            }
+
+            @foreach (var x in obj.CityCategoryDetails)
+            {
+        <div class="divVisaCategory">
+            @if (x.VisaCategory != null && x.VisaCategory != "")
+            {
+                <button class="accordion">@x.VisaCategory<span class="blkDD"> <i class="fa fa-caret-down"></i></span></button>
+                <div class="panel" style="display: none;">
+                    <div class="divVisaCategoryNest">
+                        <b>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategory.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</b>
+                        @if (x.VisaCategoryInformation != null)
+                        {
+                            <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryInformation.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</p>
+                        }
+                        @if (x.VisaCategoryInformationVisaProcedure != null)
+                        {
+                            <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryInformationVisaProcedure.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</p>
+                        }
+                        @if (x.VisaCategoryInformationDocumentsRequired != null)
+                        {
+                            <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryInformationDocumentsRequired.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</p>
+                        }
+                        @if (x.VisaCategoryInformationProcessingTime != null)
+                        {
+                            <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryInformationProcessingTime.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</p>
+                        }
+                        @if (x.VisaCategoryNotes != null)
+                        {
+                            <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryNotes.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</p>
+                        }
+                        @if (x.VisaCategoryRequirements != null)
+                        {
+                            <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryRequirements.Replace(@"\r\n\r\n", string.Empty).Replace(@"\n", string.Empty)))</p>
+                        }
+                        @if (obj.CityCategoryFees.Where(m => m.VisaCategoryCode == x.VisaCategoryId).Count() > 0)
+                        {
+                            <table>
+                                <tbody>
+                                    @foreach (var y in obj.CityCategoryFees.Where(m => m.VisaCategoryCode == x.VisaCategoryId))
+                                    {
+                                        <tr>
+                                            <td style="width: 70%">@y.VisaCategoryOption</td>
+                                            <td>
+                                                @y.VisaCategoryOptionAmountInr
+                                                @if (y.VisaCategoryOptionAmountOther != null && y.VisaCategoryOptionAmountOther != "")
+                                                {
+                                                    <label>(@y.VisaCategoryOptionAmountOther)</label>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        <p>
+                            @if (obj.CityFormDetails.Where(m => m.VisaCategoryCode == x.VisaCategoryId).Count() > 0)
+                            {
+
+                                <b>Visa Forms For : </b>
+                                @foreach (var y in obj.CityFormDetails.Where(m => m.VisaCategoryCode == x.VisaCategoryId))
+                                {
+                                    @if (y.IsEnable == 1)
+                                    {
+                                        <a target="_blank" href="@y.VisaCategoryFormPath">@y.VisaCategoryForm,</a>
+                                    }
+                                }
+                            }
+                        </p>
+                    </div>
+                    <a onclick="openModalDiv(this);"><img src="~/images/email.png" /></a>
+                    @*<a href="#" data-toggle="modal" data-target="#mymodel" onclick="openModalDiv()"><img src="~/images/email.png" /></a>*@
+                    <img src="~/images/phone.png" style="float:right" />
+                    <br />
+                    <br />
+                </div>
+            }
+        </div>
+            }
+        </div>
+    }
+</div>
+<div class="modal fade" id="mymodel" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center"><b> <span style="color:green;display:none;" class="emailSpMessage">Email sent successfully!</span></b></div>
+                <br />
+                <form id="form1">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td valign="top" align="right" style="height: 9px"></td>
+                                <td valign="top" align="center" style=" color: #1e4383; font-size:21px; height: 9px"><b>E-Mail Details</b></td>
+                                <td valign="top" style="height: 9px;  text-align: right">
+                                    <a href="javascript:void(0)" style="padding: 0 10px 0 0;" data-dismiss="modal">
+                                        Close
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" height="10" align="right">&nbsp;&nbsp; Sender Email ID:</td>
+                                <td valign="top" height="20">
+                                    <input type="email" id="senderEmail" name="senderEmail" required="required" />
+                                </td>
+                                <td valign="top" style="height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" height="10" align="right">&nbsp;&nbsp; Recipient Email ID:</td>
+                                <td valign="top" height="20">
+                                    <input type="email" id="toEmail" name="toEmail" required="required" />
+                                </td>
+                                <td valign="top" style="height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" height="10" align="right">&nbsp; Recipient CC Email ID: </td>
+                                <td valign="top" height="20">
+                                    <input type="email" id="ccEmail" name="ccEmail" />
+                                </td>
+                                <td valign="top" style="height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" height="10" align="right">&nbsp; Subject:</td>
+                                <td valign="top" height="20">
+                                    <input type="text" id="subject" name="subject" required="required" />
+                                </td>
+                                <td valign="top" height="20"></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" align="right" style="height: 7px">&nbsp; Your Remarks, If any: </td>
+                                <td valign="top" style="height: 7px">
+                                    <textarea type="text" style="height: 100px;" id="remarks" cols="20" rows="2" name="remarks"></textarea>
+                                </td>
+                                <td valign="top" style="height: 7px;"></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" align="right" style=" height: 20px"></td>
+                                <td valign="top" align="center" style="height: 20px">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input type="submit" id="sendEmailBtn" value="Send Mail" name="Button1" />
+                                </td>
+                                <td valign="top" style="height: 20px;"></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" align="right" style=" height: 20px"></td>
+                                <td valign="top" align="center" style="color: #1e4383; height: 20px">
+                                    When you send this mail, It will display total information on Visa category selected with a link to the Visa Form
+                                </td>
+                                <td valign="top" style="height: 20px; "></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                @*<div id="p_txtContent">
+                        <div style="color: #FF0000; font-weight: bold; font-size: 30px">@obj.bCountryName</div>
+                        <div class="forum_row_rs" id="amit">
+                            @foreach (var r in obj.DistinctIvsVisaNotes)
+                            {
+                                <b>@Html.Raw(System.Net.WebUtility.HtmlDecode(@r.VisaCategory))</b>
+                            }
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var catData = '';
+        function openModalDiv(elem) {
+            $("#mymodel").modal("show");
+            catData = $(elem).parent().parent().find(".divVisaCategoryNest").html();
+            //console.log(catData);
+        }
+        $(document).ready(function () {
+            $("#sendEmailBtn").click(function (event) {
+                event.preventDefault();
+                if (!$("#form1").valid())
+                    return false;
+                $.ajax({
+                    type: "Post",
+                    url: "SendEmailVisaInfo",
+                    dataType: "text",
+                    data: {
+                        "senderEmail": $('#senderEmail').val(),
+                        "toEmail": $('#toEmail').val(),
+                        "ccEmail": $('#ccEmail').val(),
+                        "subject": $('#subject').val(),
+                        "remarks": $('#remarks').val(),
+                        "catData": catData
+                    },
+                    success: function (data) {
+                        $(".emailSpMessage").show();
+                        if (data.toLowerCase() == "false")
+                            $(".emailSpMessage").text("Some error occured. Please enter valid data.");
+                        else {
+                            $('#senderEmail').val("");
+                            $('#toEmail').val("");
+                            $('#ccEmail').val("");
+                            $('#subject').val("");
+                            $('#remarks').val("");
+                        }
+                    }
+                });
+            });
+        });
+
+
+       // function SendEmail() {
+       //}
+
+    @*var SendEmail = function () {
+            e.preventDefault();
+            $.ajax({
+                type: "Post",
+                url: '@Url.Action("SendEmail1")',
+                data: $('#form').serialize(),
+                success: function (data) {
+                    alert("Success");
+                }
+            });
+        }*@
+    </script>
+}

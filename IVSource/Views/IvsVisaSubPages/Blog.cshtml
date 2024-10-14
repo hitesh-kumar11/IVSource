@@ -1,0 +1,79 @@
+﻿@model PaginatedList<IVSource.Models.IvsVisaSubPages>
+
+@{
+    ViewData["Title"] = "BLOG";
+    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+}
+
+<section id="news" class="section-news onepage-section">
+
+    @if (Model.Count() > 0)
+    {
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="blog-entry wow slideInUp">
+                            @foreach (var x in Model)
+                            {
+                                <div class="list-article-thumb">
+                                    <a asp-controller="IvsVisaSubPages" asp-action="LatestNews" asp-route-Id="@x.Id">
+                                        <img width="275" height="150" src="~/images/News/@x.Image" class="attachment-onepress-blog-small size-onepress-blog-small wp-post-image" alt="" />
+                                    </a>
+                                </div>
+
+                                <div class="list-article-content" style="height:170px">
+                                    <header class="entry-header">
+                                        <a asp-controller="IvsVisaSubPages" asp-action="LatestNews" asp-route-Id="@x.Id">
+                                            <h3>@Html.Raw(x.Title)</h3>
+                                        </a>
+                                    </header>
+
+                                    <div class="entry-excerpt">
+                                        @if (x.Description.Length > 250)
+                                        {
+                                            <p>@Html.Raw(x.Description.Substring(0, 205))...</p>
+                                        }
+                                        else if (x.Description.Length > 165 && x.Description.Length < 250)
+                                        {
+                                            <p>@Html.Raw(x.Description.Substring(0, 85))...</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@Html.Raw(x.Description)</p>
+                                        }
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+
+
+            <nav class="navigation posts-navigation" role="navigation">
+                <div class="nav-links">
+                    <div class="nav-previous">
+                        <a asp-action="Blog" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default @prevDisabled">NEWER POSTS</a>
+                    </div>
+                    <div class="nav-next">
+                        <a asp-action="Blog" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default @nextDisabled">OLDER POSTS</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    }
+    else
+    {
+        <label style="padding: 100px;"><b style="font-size: 70px;">No News Found!</b></label>
+    }
+
+</section>
+
+

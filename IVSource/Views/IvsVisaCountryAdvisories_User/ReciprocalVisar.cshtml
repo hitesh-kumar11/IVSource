@@ -1,0 +1,17 @@
+﻿@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "Reciprocal Visa";
+    Layout = "~/Views/Shared/_LayoutMemberPageCountries.cshtml";
+}
+
+<h2 style="color:black; margin-top:-2%;">Reciprocal Visa</h2>
+<div>
+    @foreach (var x in Model)
+    {
+        @foreach (var obj in x.reciprocalvisa)
+        {
+            <p>@Html.Raw(obj.Advisory)</p>
+        }
+    }
+</div>
+

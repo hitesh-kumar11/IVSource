@@ -1,0 +1,204 @@
+﻿@model IVSource.Models.IvsVisaPagesForSubscribe
+
+@*Added by Hitesh on 06062023*@
+<style type="text/css">
+.errorMsg{
+    color:red;
+    font-size:12px;
+    font-weight:bolder;
+    padding:1px 2px 1px 2px;
+}    
+</style>
+<section id="contact" class="section-contact section-padding  section-meta onepage-section">
+    <div class="container">
+        @if (Model.SubscribeToUs.Description != null)
+        {
+        <div class="section-title-area">
+            <h2 class="section-title">@Model.SubscribeToUs.Title</h2>
+            <div class="section-desc">
+                <p>@Html.Raw(Model.SubscribeToUs.Description)  </p>
+            </div>
+        </div>
+        }
+
+        <div class="row">
+
+            <div class="col-sm-2">
+            </div>
+            <div class="contact-form col-sm-8 wow slideInUp">
+                <div role="form" class="wpcf7" id="wpcf7-f124-o1" lang="en-US" dir="ltr">
+                    <div class="screen-reader-response"></div>
+                    
+                    <br />
+                    @*<form id="form1" method="post">*@
+                <form asp-action="SendEmailSubscribeToUs" asp-controller="Home" method="post">
+                    <div style="display: none;">
+                        <input type="hidden" name="_wpcf7" value="124" />
+                        <input type="hidden" name="_wpcf7_version" value="4.5.1" />
+                        <input type="hidden" name="_wpcf7_locale" value="en_US" />
+                        <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f124-o1" />
+                        <input type="hidden" name="_wpnonce" value="d444bfbeab" />
+                    </div>
+                    <div id="divSubHead">
+                        @if (Model.SubscribeToUs.Description != null)
+                        {
+                            <p style="text-align: center;">
+                                <span style="font-size: 12pt;">
+                                    <strong>SUBSCRIBE NOW</strong>
+                                </span>
+                            </p>
+                            @*Added * for mandatry fields by Hitesh on 06062023*@
+                            @*<p>
+                                <span class="wpcf7-form-control-wrap radio-390">
+                                    <span class="wpcf7-form-control wpcf7-radio">
+                                        <span class="wpcf7-list-item first">
+                                            <label>
+                                                <span class="wpcf7-list-item-label">One Year - Rs 8,036 + Applicable Goods &amp; Service Tax (GST) * (Jan - Dec)</span>&nbsp;
+                                                    <input id="oneYear" type="radio" name="radio-390" value="One Year - Rs 8,036 + Applicable Goods &amp; Service Tax (GST) * (Jan - Dec)" />
+                                            </label>
+                                        </span>
+                                        <span class="wpcf7-list-item last">
+                                            <label>
+                                                <span class="wpcf7-list-item-label">
+                                                    Two Years - Rs 14,692 + Applicable Goods &amp; Service Tax (GST) * (Jan - Dec)
+                                                </span>&nbsp;
+                                                    <input id="twoYears" type="radio" name="radio-390" value="Two Years - Rs 14,692 + Applicable Goods &amp; Service Tax (GST) * (Jan - Dec)" />
+                                            </label>
+                                        </span>
+                                    </span>
+                                </span>
+                            </p>*@
+                        }
+                    </div>
+                    @*<div style="display:inline-block; font-weight:bold;">Note <strong style="color: red">*</strong> Required fields are mandatry</div>*@
+                    <div style="display:inline-block; font-weight:bold;"><strong style="color: red">*</strong> Required Field</div>
+                    @if (Model.SubscribeToUs.Description != null)
+                    {
+                        <p>
+                            <label>Name<span class="errorMsg">*</span>:</label>
+                            <span class="wpcf7-form-control-wrap text-714">
+                                <input asp-for="SubscribeToUsForm.Name" type="text" maxlength="40" placeholder="Full Name" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="name" asp-validation-for="SubscribeToUsForm.Name" style="color: red"></span>
+                        </p>
+                        <p>
+                            <label>Designation<span class="errorMsg">*</span>:</label>
+                            <span class="wpcf7-form-control-wrap text-716">
+                                <input asp-for="SubscribeToUsForm.Designation" type="text" maxlength="40" placeholder="Company Director" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="designation" asp-validation-for="SubscribeToUsForm.Designation" style="color: red"></span>
+                        </p>
+                        <p>
+                            <label>Company<span class="errorMsg">*</span>:</label>
+                            <span class="wpcf7-form-control-wrap text-717">
+                                <input asp-for="SubscribeToUsForm.Company" type="text" maxlength="40" placeholder="Tours and Travel" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="company" asp-validation-for="SubscribeToUsForm.Company" style="color: red"></span>
+                        </p>
+
+                        <p>
+                            <label>Location<span class="errorMsg">*</span>:</label>
+                            <span class="wpcf7-form-control-wrap textarea-718">
+                                <input asp-for="SubscribeToUsForm.Full_Address" placeholder="Location" type="text" maxlength="250" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="fullAddress" asp-validation-for="SubscribeToUsForm.Full_Address" style="color: red"></span>
+                        </p>
+
+                        @* <p>
+                <label>GSTIN Number:</label>
+                <span class="wpcf7-form-control-wrap textarea-718">
+                    <input asp-for="SubscribeToUsForm.GSTIN_Number" type="text" cols="40" rows="10" placeholder="Enter Your GSTIN Number" style="background-color:#e2e2e2" />
+                </span>
+                <span id="gstinNumber" asp-validation-for="SubscribeToUsForm.GSTIN_Number" style="color: red"></span>
+            </p>*@
+
+                        <p>
+                            <label>Phone Number<span class="errorMsg">*</span>:</label>
+                            <span class="wpcf7-form-control-wrap tel-592">
+                                <input asp-for="SubscribeToUsForm.Phone_Number" type="tel" maxlength="10" placeholder="Mobile/Office Number" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="phoneNumber" asp-validation-for="SubscribeToUsForm.Phone_Number" style="color: red"></span>
+                        </p>
+                        <p>
+                            <label>Email Address<span class="errorMsg">*</span>:</label>
+                            <span class="wpcf7-form-control-wrap email-895">
+                                <input asp-for="SubscribeToUsForm.Email_Address" type="email" maxlength="40" placeholder="Official Email" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="emailAddress" asp-validation-for="SubscribeToUsForm.Email_Address" style="color: red"></span>
+                        </p>
+                    }
+
+                    @*<p style="text-align: center;">
+                        @if (Model.SubscribeToUs.Description != null)
+                        {
+                            <strong><u> D.D/Online Transfer Details</u></strong>
+                        }
+                    </p>*@
+
+                    @*@if (Model.SubscribeToUs.Description != null)
+                    {
+                        <p>
+                            <label>D.D. Number/Online Transaction Number:</label>
+                            <span class="wpcf7-form-control-wrap text-720">
+                                <input asp-for="SubscribeToUsForm.D_D_Number" type="text" maxlength="10" placeholder="Dispatched D.D Number" style="background-color:#e2e2e2" />
+                            </span>
+                        </p>
+
+                        <p>
+                            <label>Date:</label>
+                            <span class="wpcf7-form-control-wrap text-409">
+                                <input asp-for="SubscribeToUsForm.Date" placeholder="Dispatch Date" style="background-color:#e2e2e2" onfocus="(this.type='date')" type="text" onblur="(this.type='text')" />
+                            </span>
+                        </p>
+
+                        <p>
+                            <label>Amount Enclosed:</label>
+                            <span class="wpcf7-form-control-wrap text-725">
+                                <input asp-for="SubscribeToUsForm.Amount" type="text" maxlength="10" placeholder="Amount of DD" style="background-color:#e2e2e2" />
+                            </span>
+                        </p>
+
+                        <p>
+                            <label>Remarks if any:</label>
+                            <span class="wpcf7-form-control-wrap textarea-944">
+                                <input id="remarks" type="text" placeholder="Remarks" style="background-color:#e2e2e2" maxlength="50" />
+                            </span>
+                        </p>*@
+
+                        <p><br></p>
+
+                        <p style="text-align: right;">
+                            <img id="img-captcha" width="84" height="28" src="/get-captcha-image" />
+                        </p>
+
+                        <p>
+                            Type the characters you see in the image:
+                            <span class="wpcf7-form-control-wrap captcha-192">
+                                <input asp-for="SubscribeToUsForm.CaptchaCode" maxlength="4" type="text" maxlength="10" autocomplete="off" style="background-color:#e2e2e2" />
+                            </span>
+                            <span id="captchaCode" asp-validation-for="SubscribeToUsForm.CaptchaCode" class="emailSpMessage" style="color: red"></span>
+                        </p>
+
+                        <p style="text-align: center;">
+                            @*<input type="submit" id="sendEmailBtn" value="Submit" onclick="validateForm()" />*@
+                            <input type="submit" id="sendEmailBtn" value="Submit" />
+                        </p>
+
+                    @*}*@
+                    <div class="wpcf7-response-output wpcf7-display-none"></div>
+                    <div class="text-center">
+                        <b>
+
+                            <span style="color:green;" class="text-success emailSent"></span>
+                        </b>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            @*<partial name="PartialViews/ContactUs" />*@
+        </div>
+    </div>
+</section>
+

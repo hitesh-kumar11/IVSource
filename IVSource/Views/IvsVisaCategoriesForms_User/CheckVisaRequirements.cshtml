@@ -1,0 +1,69 @@
+﻿@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "Check Visa Requirement";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+<style type="text/css">
+    .container-main {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .panel {
+        margin-bottom: 20px;
+        background-color: #fff;
+        border: 1px solid #cecece;
+        border-radius: 4px;
+    }
+
+    .panel-primary > .panel-heading {
+        color: #fff;
+        background-color: #337ab7 !important;
+        border-color: #337ab7;
+        padding: 10px 15px;
+        font-family: "Gotham", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .mt-4 {
+        margin-top: 40px;
+    }
+</style>
+@*<h4 style="color:black; margin-top:10px;
+    font-size: 24px;
+    font-weight: 600;">
+    Check Visa Requirement
+</h4>*@
+@*
+<input type="hidden" name="FormPath" id="FormPath" />
+<div style="position:inherit; width:fit-content; border:0px solid gray;">
+
+    <iframe id="ifCheckVisaRequirement" src="~/htmlpage/index-new.html" title="iframe_title" style=" width:auto; height:auto; min-width:790px; min-height:789px;" >
+            </iframe>
+</div>
+*@
+
+<div class="container-main">
+    @*<div class="panel">        
+        <div style="padding:10px;">
+            <p>To obtain information regarding visa regulations and health requirements for a specific international destination, kindly share your travel details such as your passport information and travel itinerary. This will assist in providing you with the necessary guidance and recommendations for your upcoming trip.</p>
+        </div>
+        <div class="clear"></div>Itinerary Details
+    </div>*@
+
+    <div class="panel panel-primary ">
+        <div class="panel-heading">Check Travel Requirements</div>
+        <div style="padding:10px;">
+            <div style="position:relative; height:789px">
+                <iframe id="myFrame" height="789px" width="100%" style="border: 0;"
+                        src="https://www.timaticweb2.com/integration/external?ref=176aecf9821386d1240ac9f9ed42d2b6"></iframe>
+                <div style="width:80%; height:100px; position:absolute; background-color:#fff; top:695px; margin-left:10px; float:left">
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<IVSource.Models.CountryTable>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+
+<center>
+    <h2>Search Records Between Two Given Dates</h2>
+    <h3>WEB API - MVC - SQL SERVER</h3>
+    <hr />
+</center>
+
+@using (Html.BeginForm("Index", "DateSearch", FormMethod.Get))
+{
+    <span id="FromDate">FromDate</span><input id="Text1" type="text" name="FromDate"/>
+    <span id="ToDate">ToDate</span><input id="Text2" type="text" name="ToDate"/>
+    <input id="Submit1" type="submit" value="Searc Data"/>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.country_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.country_iso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modified_date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.country_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.country_iso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.created_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modified_date)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

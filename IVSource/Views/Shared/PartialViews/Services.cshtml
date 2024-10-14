@@ -1,0 +1,23 @@
+﻿@model IVSource.Models.IvsVisaPages
+
+
+<section id="services" class="section-services section-padding section-meta onepage-section">
+    <div class="container">
+        @if (Model.Description != null)
+        {
+        <div class="section-title-area">
+            <h2 class="section-title">@Model.Title</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 wow slideInUp">
+                <div class="service-item ">
+                    <div class="service-content">
+                        <p>@Html.Raw(Model.Description)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+

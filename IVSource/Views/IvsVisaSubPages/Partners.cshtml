@@ -1,0 +1,156 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<IVSource.Models.IvsVisaSubPages>
+    @using ReflectionIT.Mvc.Paging
+    @addTagHelper *,ReflectionIT.Mvc.Paging
+
+    @{
+        ViewData["Title"] = "Partners";
+        Layout = "~/Views/Shared/Admin/_LayoutAdminWebsite.cshtml";
+    }
+
+    <div class="container">
+        <div class="col-md-10" style="margin:auto;">
+
+            @{if (TempData["Message"] != null)
+                {
+                    <h4 class="text-center" style="color:green;" id="temp">@TempData["Message"]</h4>
+                    <br />
+                }
+            }
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <div>
+                        <a asp-action="PartnersAdd" asp-controller="IvsVisaSubPages" class="btn btn-info form-control text-white" style="width:200px; margin-top: 0.9em;">
+                            Add Partners
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="font-weight-bold col-sm-6">
+                    Total : @ViewBag.Total
+                </div><br />
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="lead">  Show entries &nbsp;</label>
+                    @Html.DropDownList("rowsToShow", new List<SelectListItem>
+                        {
+                          new SelectListItem { Text = "10", Value = "10"},
+                          new SelectListItem { Text = "25", Value = "25"},
+                          new SelectListItem { Text = "50", Value = "50"},
+                          new SelectListItem { Text = "100", Value = "100"}
+                        })
+                </div>
+                <div class="col-sm-6 text-right">
+                    <form method="get" class="form-inline" style="display: inline-block;">
+                        <input name="filter" class="form-control"
+                               value="@Model.RouteValue["Filter"]" />  &nbsp; &nbsp;
+                        <button type="submit" class="btn btn-info">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <br />
+            <br />
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.SortableHeaderFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.SortableHeaderFor(model => model.IsEnable)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Select((value, index) => new { value, index }))
+                    {
+                        <tr id="row_@item.value.Id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.value.Title)
+                            </td>
+                            <td>
+                                @(Convert.ToBoolean(item.value.IsEnable) ? "Yes" : "No")
+                            </td>
+                            <td width="21%">
+                                <a asp-action="PartnersEdit" asp-route-id="@item.value.Id" class="btn btn-info">Edit</a>
+                                @*<a class="btn btn-danger" onclick="ConfirmDelete(@item.value.Id)" style="color: white">Delete</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Delete Partner</h3>
+                            <a href="#" class="close" data-dismiss="modal">&times;</a>
+                        </div>
+
+                        <div class="modal-body">
+                            <h4>Are you sure you want to delete this partner?</h4>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                            <a class="btn btn-success" onclick="DeleteNews()" style="color:white">Confirm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="hiddenNewsId" />
+
+            <nav aria-label="pagination">
+                <vc:pager paging-list="@Model" />
+            </nav>
+            @section Scripts {
+                <script>
+                    jQuery('#rowsToShow').change(function () {
+                        var currentUrl = jQuery(location).attr('href');
+                        var url;
+                        if (currentUrl.indexOf("?") != -1) {
+                            if (currentUrl.indexOf("rowsToShow") != -1) {
+                                var href = new URL(currentUrl);
+                                href.searchParams.set('rowsToShow', jQuery(this).val());
+                                url = href.toString();
+                            }
+                            else
+                                url = currentUrl + "&rowsToShow=" + jQuery(this).val();
+                        }
+                        else
+                            url = currentUrl + "?rowsToShow=" + jQuery(this).val();
+                        window.location.href = url;
+                    });
+                </script>
+
+                <script>
+                    var ConfirmDelete = function (Id) {
+                        $('#hiddenNewsId').val(Id);
+                        $('#myModal').modal('show');
+                    }
+
+                    var DeleteNews = function () {
+                        var newsId = $('#hiddenNewsId').val();
+                        $.ajax({
+                            type: "Post",
+                            url: "/IvsVisaSubPages/Delete",
+                            data: { Id: newsId },
+                            success: function () {
+                                $("#myModal").modal("hide");
+                                $("#row_" + newsId).remove();
+                                $('#temp').remove();
+                            }
+                        });
+                    }
+                </script>
+            }
+        </div>
+    </div>

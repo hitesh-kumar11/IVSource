@@ -1,0 +1,27 @@
+﻿@model IVSource.Models.IvsVisaPages
+@{
+    ViewData["Title"] = "Industry Opines";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<article id="post-199" class="post-199 page type-page status-publish hentry">
+    <header class="entry-header"></header>
+
+    <div class="entry-content">
+        @if (Model.Description != null)
+        {
+            <p style="text-align: justify;">@Model.Title</p>
+            <div class="row">
+                <div class="col-sm-12 col-lg-12 wow slideInUp">
+                    <div class="service-item ">
+                        <div class="service-content">
+                            <p>@Html.Raw(Model.Description)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <p>&nbsp;</p>
+        @*<div class="content-button left-button blue small subsBtn"><a href="https://www.ivsource.com/subscribe-to-us/">Subscribe To Us</a></div>*@
+    </div>
+</article>

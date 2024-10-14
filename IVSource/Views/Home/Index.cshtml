@@ -1,0 +1,143 @@
+﻿@model IVSource.Models.HomePage
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@section CustomStyles {
+    <link rel="stylesheet" type="text/css" href="~/css/custom-styles.css" />
+}
+
+@*<section id="hero" data-images="[&quot;https:\/\/www.ivsource.com\/wp-content\/uploads\/2021\/04\/1.jpg&quot;,&quot;https:\/\/www.ivsource.com\/wp-content\/uploads\/2021\/04\/maxresdefault.jpg&quot;]" class="hero-slideshow-wrapper hero-slideshow-normal">*@
+<section id="hero" data-images="[&quot;../Uploads/logo/1.jpg&quot;,&quot;../Uploads/logo/maxresdefault.jpg&quot;]" class="hero-slideshow-wrapper hero-slideshow-normal">
+
+    <div class="slider-spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+
+    <div class="container" style="padding-top: 10%; padding-bottom: 10%;">
+        <div class="hero__content hero-content-style1">
+            <h2 class="hero-large-text">World Visa Guide</h2>						<div class="hero-small-text">
+                <p>
+                    Visit every Diplomatic Mission in the world in our International Help Address |<br />
+                    Detailed requisite documentation on every country |<br />
+                    Check all the Visa Application Centres in India
+                </p>
+            </div>						<a href="/#services" class="btn btn-theme-primary btn-lg">Our Services</a>						<a href="/#contact" class="btn btn-secondary-outline btn-lg">Get Started</a>
+        </div>
+    </div>
+</section>
+<div id="content" class="site-content">
+    <main id="main" class="site-main" role="main">        
+      @*  if (Model.VisitorsArea.visitorsArea.Description != null)
+         Added by Nushrat to show no content if any page get disabled.*@
+        @if (Model.VisitorsArea.visitorsArea != null)
+        {
+            <partial name="PartialViews/VisitorsArea" model="Model" />
+        }
+        else //// Added by Nushrat to show no content if any page get disabled.//
+        {
+            <p>No contents available</p>
+        }
+
+        @if (Model.AboutUs != null)
+        {
+            <partial name="PartialViews/AboutUs" model="Model.AboutUs" />
+        }
+        else //// Added by Nushrat to show no content if any page get disabled.//
+        {
+            <p>No contents available</p>
+        }
+
+        @if (Model.Services != null)
+        {
+            <partial name="PartialViews/Services" model="Model.Services" />
+        }
+        else //// Added by Nushrat to show no content if any page get disabled.//
+        {
+            <p>No contents available</p>
+        }
+        @*@Html.Partial("")*@
+
+        <div class="container">
+        </div>
+        @*<partial name="PartialViews/Gallery" />*@
+
+        @if (Model.News.pages != null)
+        {
+            <partial name="PartialViews/LatestNews" model="Model" />
+        }
+        else //// Added by Nushrat to show no content if any page get disabled.//
+        {
+            <p>No contents available</p>
+        }
+
+        @if (Model.Subscribe.SubscribeToUs != null)
+        {
+            <partial name="PartialViews/SubscribeToUs" model="Model.Subscribe" />
+        }
+        else //// Added by Nushrat to show no content if any page get disabled.//
+        {
+            <p>No contents available</p>
+        }
+
+        @if (Model.ContactUS != null)
+        {
+            <partial name="PartialViews/ContactUs" model="Model.ContactUS" />
+        }
+        else //// Added by Nushrat to show no content if any page get disabled.//
+        {
+            <p>No contents available</p>
+        }
+        @if (Model != null)
+        {
+            <div style="padding: 15px; background:#fff; margin-bottom:30px;">
+                @*if (Model.Partners.partners.Description != null)
+                 Added by Nushrat to show no content if any page get disabled.*@
+                @if (Model.Partners.partners != null)
+                {
+                    <div class="section-title-area">
+                        <h2 class="section-title">@Model.Partners.partners.Title</h2>
+                        <div class="section-desc">
+                            <p style="text-align: justify;">@Html.Raw(Model.Partners.partners.Description)</p>
+                        </div>
+                    </div>
+
+                    <div class="wpcp-carousel-wrapper wpcp-wrapper-5840">
+                        <div id="sp-wp-carousel-free-id-5840" class="wpcp-carousel-section sp-wpcp-5840 nav-vertical-center wpcp-image-carousel wpcp-preloader wpcp-standard" data-slick='{ "accessibility":true, "arrows":true, "autoplay":true, "autoplaySpeed":3000, "dots":true, "infinite":true, "speed":600, "pauseOnHover":true, "slidesToShow":5, "responsive":[ { "breakpoint":1200, "settings": { "slidesToShow":4 } }, { "breakpoint":980, "settings":{ "slidesToShow":3 } }, { "breakpoint":736, "settings": { "slidesToShow":2 } }, {"breakpoint":480, "settings":{ "slidesToShow":1, "arrows": false, "dots": true } } ], "swipe": true, "draggable": true, "swipeToSlide":false }' dir="ltr">
+                            @foreach (var x in Model.PartnersList)
+                            {
+                                if (x.Image != null)
+                                {
+                                    <div class="wpcp-slide-item" >
+                                        <img src="~/images/Partners/@x.Image" alt="@x.Title" width="120" height="45">
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <p>No content</p>
+                }
+            </div>
+
+            //<div style="padding: 15px;">
+            //    <div class="section-title-area">	<h2 class="section-title">OUR PARTNERS</h2></div>
+            //    <div class="wpcp-carousel-wrapper wpcp-wrapper-5840"><div id="wpcp-preloader-5840" class="wpcp-carousel-preloader"><img src="~/images/ajax-loader.gif " /></div><div id="sp-wp-carousel-free-id-5840" class="wpcp-carousel-section sp-wpcp-5840 nav-vertical-center wpcp-image-carousel wpcp-preloader wpcp-standard" data-slick='{ "accessibility":true, "arrows":true, "autoplay":true, "autoplaySpeed":3000, "dots":true, "infinite":true, "speed":600, "pauseOnHover":true, "slidesToShow":5, "responsive":[ { "breakpoint":1200, "settings": { "slidesToShow":4 } }, { "breakpoint":980, "settings":{ "slidesToShow":3 } }, { "breakpoint":736, "settings": { "slidesToShow":2 } }, {"breakpoint":480, "settings":{ "slidesToShow":1, "arrows": false, "dots": true } } ], "swipe": true, "draggable": true, "swipeToSlide":false }' dir="ltr"><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/Yatra-logo.jpg" alt="Yatra logo" width="120" height="45"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/IND-cozmo-travel-world-logo-V.png" alt="IND-cozmo-travel world-logo-V" width="120" height="120"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/Goibibo-Logo.jpg" alt="goibibo-logo" width="120" height="45"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/TAFI-Logo.png" alt="tafi-logo" width="120" height="45"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/Gilpin-logo-Final.png" alt="Gilpin logo Final" width="120" height="45"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/Pace-Logo.png" alt="Pace Logo" width="120" height="45"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/tui-logo.png" alt="tui-logo" width="120" height="45"></div></div><div class="wpcp-single-item"><div class="wpcp-slide-image"><img src="~/images/ATB-Logo.png" alt="ATB Logo" width="120" height="45"></div></div></div></div>
+            //</div>
+        }
+        else
+        {
+            < p > No contents available</ p >
+        }
+
+    </main><!-- #main -->
+</div><!-- #content -->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,614 @@
+﻿@model IVSource.Models.HomePage
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            //handle if your mouse is over the document body,
+            //if not your mouse is outside the document and if you click close button return message or do what you want
+
+            var out = false;
+            $("body").mouseover(function () {
+                out = false;
+            }).mouseout(function () {
+                out = true;
+            });
+
+            $(window).bind('beforeunload', function (e) {
+                if (out) { return "Do you really want to leave this page now?" }
+            });
+
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <title>World Wide Guide - IV Source</title>
+
+
+    <!-- This site is optimized with the Yoast SEO plugin v3.9 - https://yoast.com/wordpress/plugins/seo/ -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="World Wide Guide - IV Source" />
+    <meta property="og:description" content="The first ever VISA Service Provider, established in 1987, we started advising Travel Agents on documentation. This eventually started as newsletters and culminated in a Publication called &#8220;SOURCE&#8221;, which ran ..." />
+    <meta property="og:site_name" content="IV Source" />
+    <script type='application/ld+json'>
+        @*{"@kcontext":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"http:\/\/localhost\/ivsourcenew\/","name":"IV Source","potentialAction":{"@type":"SearchAction","target":"http:\/\/localhost\/ivsourcenew\/?s={search_term_string}","query-input":"required name=search_term_string"}}*@
+    </script>
+    <meta name="google-site-verification" content="usm9-_Boo0_ubR80_wp-jIpwfg2hDF1KEbpqI_DVQ80" />
+    <!-- / Yoast SEO plugin. -->
+
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <script type="text/javascript">
+        window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "http:\/\/localhost\/ivsourcenew\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.16" } };
+        !function (a, b, c) { function d(a, b) { var c = String.fromCharCode; l.clearRect(0, 0, k.width, k.height), l.fillText(c.apply(this, a), 0, 0); var d = k.toDataURL(); l.clearRect(0, 0, k.width, k.height), l.fillText(c.apply(this, b), 0, 0); var e = k.toDataURL(); return d === e } function e(a) { var b; if (!l || !l.fillText) return !1; switch (l.textBaseline = "top", l.font = "600 32px Arial", a) { case "flag": return !(b = d([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819])) && (b = d([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]), !b); case "emoji": return b = d([55358, 56760, 9792, 65039], [55358, 56760, 8203, 9792, 65039]), !b }return !1 } function f(a) { var c = b.createElement("script"); c.src = a, c.defer = c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c) } var g, h, i, j, k = b.createElement("canvas"), l = k.getContext && k.getContext("2d"); for (j = Array("flag", "emoji"), c.supports = { everything: !0, everythingExceptFlag: !0 }, i = 0; i < j.length; i++)c.supports[j[i]] = e(j[i]), c.supports.everything = c.supports.everything && c.supports[j[i]], "flag" !== j[i] && (c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && c.supports[j[i]]); c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && !c.supports.flag, c.DOMReady = !1, c.readyCallback = function () { c.DOMReady = !0 }, c.supports.everything || (h = function () { c.readyCallback() }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", h, !1), a.addEventListener("load", h, !1)) : (a.attachEvent("onload", h), b.attachEvent("onreadystatechange", function () { "complete" === b.readyState && c.readyCallback() })), g = c.source || {}, g.concatemoji ? f(g.concatemoji) : g.wpemoji && g.twemoji && (f(g.twemoji), f(g.wpemoji))) }(window, document, window._wpemojiSettings);
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel='stylesheet' id='contact-form-7-css' href='~/css/styles.css?ver=4.5.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='wpcf-slick-css' href='~/css/slick.css?ver=2.1.17' type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-carousel-free-fontawesome-css' href='~/css/font-awesome.min.css?ver=2.1.17' type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-carousel-free-css' href='~/css/wp-carousel-free-public.css?ver=2.1.17' type='text/css' media='all' />
+    <style id='wp-carousel-free-inline-css' type='text/css'>
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .wpcp-single-item {
+            border: 1px none #dddddd;
+        }
+
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-prev,
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-next,
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-prev:hover,
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-next:hover {
+            background: none;
+            border: none;
+            font-size: 30px;
+        }
+
+            #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-prev i,
+            #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-next i {
+                color: #aaa;
+            }
+
+                #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-prev i:hover,
+                #sp-wp-carousel-free-id-5821.sp-wpcp-5821 .slick-next i:hover {
+                    color: #52b3d9;
+                }
+
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 ul.slick-dots li button {
+            background-color: #cccccc;
+        }
+
+        #sp-wp-carousel-free-id-5821.sp-wpcp-5821 ul.slick-dots li.slick-active button {
+            background-color: #52b3d9;
+        }
+
+        @@media screen and (max-width: 479px) {
+            #sp-wp-carousel-free-id-5821.nav-vertical-center {
+                padding: 0;
+            }
+        }
+    </style>
+    <link rel='stylesheet' id='wp-lightbox-2.min.css-css' href='~/css/lightbox.min.css?ver=1.3.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='onepress-fonts-css' href='https://fonts.googleapis.com/css?family=Raleway%3A400%2C500%2C600%2C700%2C300%2C100%2C800%2C900%7COpen+Sans%3A400%2C300%2C300italic%2C400italic%2C600%2C600italic%2C700%2C700italic&#038;subset=latin%2Clatin-ext&#038;ver=2.2.7' type='text/css' media='all' />
+    <link rel='stylesheet' id='onepress-animate-css' href='~/css/animate.min.css?ver=2.2.7' type='text/css' media='all' />
+    <link rel='stylesheet' id='onepress-fa-css' href='~/css/font-awesome.min.css?ver=4.7.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='onepress-bootstrap-css' href='~/css/bootstrap.min.css?ver=2.2.7' type='text/css' media='all' />
+    <link rel='stylesheet' id='onepress-style-css' href='~/css/style.css?ver=4.9.16' type='text/css' media='all' />
+    <script src="~/js/wp-emoji-release.min.js"></script>
+    <script src="~/js/wp-embed.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+
+    <style id='onepress-style-inline-css' type='text/css'>
+        #main .video-section section.hero-slideshow-wrapper {
+            background: transparent
+        }
+
+        .hero-slideshow-wrapper:after {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(40,40,40,0.3);
+            display: block;
+            content: ""
+        }
+
+        .body-desktop .parallax-hero .hero-slideshow-wrapper:after {
+            display: none !important
+        }
+
+        #parallax-hero > .parallax-bg::before {
+            background-color: rgba(40,40,40,0.3);
+            opacity: 1
+        }
+
+        .body-desktop .parallax-hero .hero-slideshow-wrapper:after {
+            display: none !important
+        }
+
+        .onepress-menu > li > a {
+            color: #80827f
+        }
+
+            .onepress-menu > li > a:hover, .onepress-menu > li.onepress-current-item > a {
+                color: #0382cf;
+                -webkit-transition: all 0.5s ease-in-out;
+                -moz-transition: all 0.5s ease-in-out;
+                -o-transition: all 0.5s ease-in-out;
+                transition: all 0.5s ease-in-out
+            }
+
+        #footer-widgets {
+        }
+
+        .gallery-carousel .g-item {
+            padding: 0px 10px
+        }
+
+        .gallery-carousel {
+            margin-left: -10px;
+            margin-right: -10px
+        }
+
+        .gallery-grid .g-item, .gallery-masonry .g-item .inner {
+            padding: 10px
+        }
+
+        .gallery-grid, .gallery-masonry {
+            margin: -10px
+        }
+    </style>
+    <link rel='stylesheet' id='onepress-gallery-lightgallery-css' href='~/css/lightgallery.css?ver=4.9.16' type='text/css' media='all' />
+    <script type='text/javascript' src='~/js/jquery.js?ver=1.12.4'></script>
+    <script type='text/javascript' src='~/js/jquery-migrate.min.js?ver=1.4.1'></script>
+    <meta name="generator" content="WordPress 4.9.16" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78469714', 'auto');
+        ga('send', 'pageview');
+    </script>
+    @RenderSection("CustomStyles", false)
+</head>
+
+<body class="home page-template page-template-template-frontpage page-template-template-frontpage-php page page-id-5823 group-blog">
+    <div id="page" class="hfeed site">
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        <div id="header-section" class="h-on-top no-transparent">
+            <header id="masthead" class="site-header header-contained is-sticky no-scroll no-t h-on-top" role="banner">
+                <div class="container">
+                    <div class="site-branding">
+                        @*<img src="~/images/@Model.Logo.Image">*@
+                        <img id="logoHeader" src="/Uploads/logo/logoIVS.PNG" style="width:auto;" />
+                    </div>
+                    <div class="header-right-wrapper">
+                        <a href="#0" id="nav-toggle">Menu<span></span></a>
+                        <nav id="site-navigation" class="main-navigation" role="navigation">
+                            <ul class="onepress-menu">
+                                <li id="menu-item-82" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-82"><a href="/#hero">Home</a></li>
+                                <li id="menu-item-5847" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-5847"><a href="/#about">About</a></li>
+                                <li id="menu-item-5848" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-5848"><a href="/#services">Services</a></li>
+                                <li id="menu-item-5849" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-5849"><a href="/#contact">Subscribe</a></li>
+                                <li id="menu-item-5850" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-5850"><a href="/#contactDiv">Contact</a></li>
+                                <li id="menu-item-5925" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5925"><a asp-controller="Home" asp-action="Members">Members Login</a></li>
+                            </ul>
+                        </nav>
+                        <!-- #site-navigation -->
+                    </div>
+                </div>
+            </header><!-- #masthead -->
+        </div>
+
+        @RenderBody()
+        
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div id="footer-widgets" class="footer-widgets section-padding ">
+                <div class="container">
+                    <div class="row">
+                        <div id="footer-1" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+                            <aside id="text-1" class="footer-widget widget widget_text">
+                                <h2 class="widget-title">QUICK CONTACT INFO</h2>
+                                <div class="textwidget">
+                                    @foreach (var x in Model.QuickContactInfo)
+                                    {
+                                        <p>
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">
+                                                    @x.CompanyName
+                                                </font>foreach
+                                            </font>
+                                        </p>
+                                        <address>
+                                            <i class="fa fa-map-marker"></i> @x.Address
+                                            <br><br>
+                                            <i class="fa fa-envelope-o"></i><a href="mailto:ivsource@itq.in"> @x.Email</a><br>
+                                            <i class="fa fa-phone"></i><a href="tel:+91 124 428 4800"> @x.Phone</a>
+                                        </address>
+                                        <p></p>
+                                    }
+                                </div>
+                            </aside>
+                        </div>
+                        <div id="footer-2" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+                            <aside id="nav_menu-10" class="footer-widget widget widget_nav_menu">
+                                <h2 class="widget-title">Our Content</h2><div class="menu-our-content-container">
+                                    <ul id="menu-our-content" class="menu">
+                                        @*<li id="menu-item-195" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-195"><a asp-controller="Home" asp-action="CountryFactFinder">Country Fact Finder</a></li>
+                                            <li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a asp-controller="Home" asp-action="DiplomaticRepresentation">Diplomatic Representation</a></li>
+                                            <li id="menu-item-218" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-218"><a asp-controller="Home" asp-action="VisaNoteAndFees">Visa Note and Fees</a></li>
+                                            <li id="menu-item-217" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-217"><a asp-controller="Home" asp-action="VisaForm">Visa Form</a></li>
+                                            <li id="menu-item-216" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-216"><a asp-controller="Home" asp-action="Advisories">Advisories</a></li>
+                                            <li id="menu-item-215" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-215"><a asp-controller="Home" asp-action="ReciprocalVisa">Reciprocal Visa</a></li>
+                                            <li id="menu-item-214" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-214"><a asp-controller="Home" asp-action="IndianMissionsOverseas">Indian Missions Overseas</a></li>
+                                            <li id="menu-item-213" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-213"><a asp-controller="Home" asp-action="InternationalHelpAddresses">International Help Addresses</a></li>
+                                            <li id="menu-item-226" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-226"><a asp-controller="Home" asp-action="Holidays">Holidays</a></li>
+                                            <li id="menu-item-55" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-55"><a href="@Model.MEAUsefulLinks.Description">M.E.A USEFUL LINKS</a></li>
+                                            <li id="menu-item-3687" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3687"><a href="@Model.EVisaIntoIndia.Description">E-VISA INTO INDIA</a></li>
+                                            <li id="menu-item-3800" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3800"><a href="@Model.WhoHealthRulesWorldWide.Description">WHO HEALTH RULES WORLD-WIDE</a></li>
+                                            <li id="menu-item-225" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-225"><a asp-controller="Home" asp-action="WorldFactBook">World Fact Book</a></li>
+                                            <li id="menu-item-4271" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4271"><a href="@Model.FlightsFromCom.Description">FLIGHTSFROM.COM</a></li>
+                                            <li id="menu-item-57" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-57"><a href="@Model.FlightRadar.Description">Flight Radar</a></li>
+                                            <li id="menu-item-474" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-474"><a href="@Model.PlanYourTravel.Description">Plan Your Travel</a></li>
+                                            <li id="menu-item-5938" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5938"><a asp-controller="Home" asp-action="IndustryOpines">Industry Opines</a></li>
+                                            <li id="menu-item-5939" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5939"><a asp-controller="Home" asp-action="VThePeople">V The People</a></li>
+                                            <li id="menu-item-5940" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5940"><a href="@Model.ClickForPresentation.Description">Click For Presentation</a></li>
+                                            <li id="menu-item-5937" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5937"><a asp-controller="Home" asp-action="Music">Music</a></li>*@
+                                        @foreach (var x in Model.Pages.Pager)
+                                        {
+                                            @if (x.IsEnable == true)
+                                            {
+                                                <li><a asp-controller="Home" asp-action="PagesOurContent" asp-route-title="@x.Title">@x.Title</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a>@x.Title</a></li>
+                                            }
+                                        }
+                                        @foreach (var obj in Model.Links.Linkr)
+                                        {
+                                            @if (obj.IsEnable == true)
+                                            {
+                                                <li><a href="@obj.Description">@obj.Title</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a>@obj.Title</a></li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div id="footer-3" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+                            <aside id="archives-1" class="footer-widget widget widget_archive">
+                                <h2 class="widget-title">News</h2>
+                                <select class="createdDate" id="rowsToShow"></select>
+                            </aside>
+                        </div>
+                        @*<div id="footer-4" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+                                <aside id="search-1" class="footer-widget widget widget_search">
+                                    <h2 class="widget-title">Search</h2><form role="search" method="get" class="search-form" action="/">
+                                        <label>
+                                            <span class="screen-reader-text">Search for:</span>
+                                            <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+                                        </label>
+                                        <input type="submit" class="search-submit" value="Search" />
+                                    </form>
+                                </aside><aside id="media_image-7" class="footer-widget widget widget_media_image"><a href="https://www.markuslerner.com/travelscope/"><img width="225" height="243" src="~/images/Travel-Scope.jpg" class="image wp-image-3935  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" /></a></aside><aside id="media_image-6" class="footer-widget widget widget_media_image"><a href="http://www.xe.com/currencyconverter/"><img width="225" height="80" src="~/images/Currency-Converter.jpg" class="image wp-image-3937  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" /></a></aside>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-info">
+                <div class="container">
+                    <div class="btt">
+                        <a class="back-to-top" href="#page" title="Back To Top"><i class="fa fa-angle-double-up wow flash" data-wow-duration="2s"></i></a>
+                    </div>
+                    <div class="colorWhite">
+                        <h4>COPYRIGHT © @DateTime.Now.Year.ToString() World Visa Guide. ALL RIGHTS RESERVED</h4>				<p>
+                            Disclaimer Notice:
+                            IVSource accepts no responsibility legal or otherwise, for any errors or omissions that may have occurred or for the statements made in this website. No part of this site may be reproduced in any form or by any means without permission in writing from the publishers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- .site-info -->
+
+        </footer><!-- #colophon -->
+    </div><!-- #page -->
+
+
+    <script type='text/javascript' src='~/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var _wpcf7 = { "loaderUrl": "http:\/\/localhost\/ivsourcenew\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif", "recaptcha": { "messages": { "empty": "Please verify that you are not a robot." } }, "sending": "Sending ..." };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/js/scripts.js?ver=4.5.1'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var JQLBSettings = { "fitToScreen": "0", "resizeSpeed": "400", "displayDownloadLink": "0", "navbarOnTop": "0", "loopImages": "", "resizeCenter": "", "marginSize": "", "linkTarget": "_self", "help": "", "prevLinkTitle": "previous image", "nextLinkTitle": "next image", "prevLinkText": "\u00ab Previous", "nextLinkText": "Next \u00bb", "closeTitle": "close image gallery", "image": "Image ", "of": " of ", "download": "Download", "jqlb_overlay_opacity": "80", "jqlb_overlay_color": "#000000", "jqlb_overlay_close": "1", "jqlb_border_width": "10", "jqlb_border_color": "#ffffff", "jqlb_border_radius": "0", "jqlb_image_info_background_transparency": "100", "jqlb_image_info_bg_color": "#ffffff", "jqlb_image_info_text_color": "#000000", "jqlb_image_info_text_fontsize": "10", "jqlb_show_text_for_image": "1", "jqlb_next_image_title": "next image", "jqlb_previous_image_title": "previous image", "jqlb_next_button_image": "http:\/\/localhost\/ivsourcenew\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/next.gif", "jqlb_previous_button_image": "http:\/\/localhost\/ivsourcenew\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/prev.gif", "jqlb_maximum_width": "", "jqlb_maximum_height": "", "jqlb_show_close_button": "1", "jqlb_close_image_title": "close image gallery", "jqlb_close_image_max_heght": "22", "jqlb_image_for_close_lightbox": "http:\/\/localhost\/ivsourcenew\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/closelabel.gif", "jqlb_keyboard_navigation": "1", "jqlb_popup_size_fix": "0" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/js/wp-lightbox-2.min.js?ver=1.3.4.1'></script>
+    <script type='text/javascript' src='~/js/plugins.js?ver=2.2.7'></script>
+    <script type='text/javascript' src='~/js/bootstrap.min.js?ver=2.2.7'></script>
+    <script type='text/javascript' src='~/js/owl.carousel.min.js?ver=2.2.7'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var onepress_js_settings = { "onepress_disable_animation": "", "onepress_disable_sticky_header": "", "onepress_vertical_align_menu": "", "hero_animation": "flipInX", "hero_speed": "5000", "hero_fade": "750", "hero_duration": "5000", "hero_disable_preload": "", "is_home": "", "gallery_enable": "1", "is_rtl": "" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/js/theme.js?ver=2.2.7'></script>
+    <script type='text/javascript' src='~/js/wp-embed.min.js?ver=4.9.16'></script>
+    <script type='text/javascript' src='~/js/slick.js?ver=2.1.17'></script>
+    <script type='text/javascript' src='~/js/wp-carousel-free-public.js?ver=2.1.17'></script>
+    <script type='text/javascript' src='~/js/preloader.js?ver=2.1.17'></script>
+
+    <style>
+        #name {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #designation {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #company {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #fullAddress {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #gstinNumber {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #phoneNumber {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #emailAddress {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+
+        #captchaCode {
+            font-size: 8pt;
+            color: #f00;
+            font-weight: 600;
+        }
+    </style>
+
+    @*<script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <link href="~/admin/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />*@
+
+    <script>
+
+
+        jQuery(document).ready(function () {
+
+            jQuery("#img-captcha").click(function () {
+                resetCaptchaImage();
+            });
+
+            function resetCaptchaImage() {
+                d = new Date();
+                jQuery("#img-captcha").attr("src", "/get-captcha-image?" + d.getTime());
+            }
+            @*Added by Hitesh on 06062023*@
+            $("#sendEmailBtn").click(function (event) {
+                debugger;
+                event.preventDefault();
+
+                if ($('#SubscribeToUsForm_Name').val() == "") {
+                    $('#name').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_Designation').val() == "") {
+                    $('#designation').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_Company').val() == "") {
+                    $('#company').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_Full_Address').val() == "") {
+                    $('#fullAddress').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_GSTIN_Number').val() == "") {
+                    $('#gstinNumber').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_Phone_Number').val() == "") {
+                    $('#phoneNumber').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_Email_Address').val() == "") {
+                    $('#emailAddress').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+                if ($('#SubscribeToUsForm_CaptchaCode').val() == "") {
+                    $('#captchaCode').text("PLEASE FILL THE REQUIRED FIELD.");
+                }
+
+                function resetCaptchaImageOnSubmit() {
+                    d = new Date();
+                    $("#img-captcha").attr("src", "/get-captcha-image?" + d.getTime());
+                }
+
+                var subject = "Registration Application | IV Source";
+
+
+                var allData = {
+                    "Years": $('input[name="radio-390"]:checked').val(),
+                    "Name": $('#SubscribeToUsForm_Name').val(),
+                    "Designation": $('#SubscribeToUsForm_Designation').val(),
+                    "Company": $('#SubscribeToUsForm_Company').val(),
+                    "Full_Address": $('#SubscribeToUsForm_Full_Address').val(),
+                    "GSTIN_Number": $("#SubscribeToUsForm_GSTIN_Number").val(),
+                    "Phone_Number": $('#SubscribeToUsForm_Phone_Number').val(),
+                    "Email_Address": $('#SubscribeToUsForm_Email_Address').val(),
+                    "D_D_Number": $('#SubscribeToUsForm_D_D_Number').val(),
+                    "Date": $('#SubscribeToUsForm_Date').val(),
+                    "Amount": $('#SubscribeToUsForm_Amount').val(),
+                    "remarks": $('#remarks').val(),
+                    "CaptchaCode": $('#SubscribeToUsForm_CaptchaCode').val(),
+                    "subject": subject,
+                    "PlanType": $('input[name="radio-390"]:checked').val(),
+                };
+
+                $.ajax({
+                    type: "Post",
+                    url: "/Home/SendEmailSubscribeToUs",
+                    dataType: "text",
+                    data: allData,
+                    success: function (data) {
+                        $(".emailSpMessage").show();
+
+                        if (data == "PLEASE FILL THE REQUIRED FIELD.") {
+                            if ($('#SubscribeToUsForm_Name').val() == "") {
+                                $("#name").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_Designation').val() == "") {
+                                $('designation').text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_Company').val() == "") {
+                                $("#company").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_Full_Address').val() == "") {
+                                $("#fullAddress").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_GSTIN_Number').val() == "") {
+                                $("#gstinNumber").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_Phone_Number').val() == "") {
+                                $("#phoneNumber").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_Email_Address').val() == "") {
+                                $("#emailAddress").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                            if ($('#SubscribeToUsForm_CaptchaCode').val() == "") {
+                                $("#captchaCode").text("PLEASE FILL THE REQUIRED FIELD.");
+                            }
+                        }
+
+                        else if (data == "Mail Sent successfully") {
+                            //$(".emailSent").text("Mail Sent Successfully.");
+                            $(".emailSent").text("Your registration has been successfully completed. We will contact you very soon!");
+                            $('input[name="radio-390"]').prop("checked", false);
+                            $('#SubscribeToUsForm_Name').val("");
+                            $('#SubscribeToUsForm_Designation').val("");
+                            $('#SubscribeToUsForm_Company').val("");
+                            $('#SubscribeToUsForm_Full_Address').val("");
+                            $('#SubscribeToUsForm_GSTIN_Number').val("");
+                            $('#SubscribeToUsForm_Phone_Number').val("");
+                            $('#SubscribeToUsForm_Email_Address').val("");
+                            $('#SubscribeToUsForm_D_D_Number').val("");
+                            $('#SubscribeToUsForm_Date').val("");
+                            $('#SubscribeToUsForm_Amount').val("");
+                            $('#remarks').val("");
+                            $('#SubscribeToUsForm_CaptchaCode').val("");
+                        }
+
+                        else if (data == "MailBox Unavailable. Please enter valid email.") {
+                            //$("#emailAddress").text("MailBox Unavailable. Please enter valid email.");
+                            $("#emailAddress").text("User registraton process is not completed, Please try after some time.");
+                            resetCaptchaImageOnSubmit();
+                        }
+
+                        else if (data == "Entered code is incorrect") {
+                            $('.emailSpMessage').text("Entered code is incorrect.");
+                            resetCaptchaImageOnSubmit();
+                        }
+
+                        else {
+
+                        }
+                    }
+                });
+            });
+        });
+
+
+        jQuery('#rowsToShow').change(function () {
+            var currentUrl = jQuery(location).attr('href') + 'IvsVisaSubPages/Blog';
+            var url;
+            if (currentUrl.indexOf("?") != -1) {
+                if (currentUrl.indexOf("rowsToShow") != -1) {
+                    var href = new URL(currentUrl);
+                    href.searchParams.set('rowsToShow', jQuery(this).val());
+                    url = href.toString();
+                }
+                else
+                    url = currentUrl + "&rowsToShow=" + jQuery(this).val();
+            }
+            else
+                url = currentUrl + "?rowsToShow=" + jQuery(this).val();
+            window.location.href = url;
+        });
+
+        jQuery(document).ready(function () {
+            jQuery.ajax({
+                type: "post",
+                url: "/IvsVisaLogo/Index",
+                success: function (response) {
+                    var image = response.image;
+                    var title = response.title;
+
+                    if (image != null) {
+                        //jQuery('#logoHeader').attr('src', "/images/" + image);
+                        jQuery('#logoHeader').attr('src', "/Uploads/logo/logoIVS.PNG");
+
+                    }
+
+                    var options = '';
+                    options += '<option value="Select">Select Month</option>';
+
+                    for (var i = 0; i < response.createdDate.length ; i++) {
+                        options += '<option value="' + response.createdDate[i].createdDateValue + '">' + response.createdDate[i].createdDateText + '</option>';
+                    }
+
+                    jQuery('.createdDate').append(options);
+                },
+            });
+        });
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+

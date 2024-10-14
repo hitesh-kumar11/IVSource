@@ -1,0 +1,180 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="obj\Release\**" />
+    <Content Remove="obj\Release\**" />
+    <EmbeddedResource Remove="obj\Release\**" />
+    <None Remove="obj\Release\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\Api\AppLog.cs" />
+    <Compile Remove="Models\City.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\IvsVisaCategories\VisaNoteFees - Copy.cshtml" />
+    <Content Remove="Views\IvsVisaCategories_User\VisaNoteFees - Copy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include=".config\dotnet-tools.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\IVSource.deps.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\IVSource.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\IVSource.runtimeconfig.json" />
+    <Content Include="bin\Release\netcoreapp2.1\appsettings.Development.json" />
+    <Content Include="bin\Release\netcoreapp2.1\appsettings.json" />
+    <Content Include="bin\Release\netcoreapp2.1\IVSource.deps.json" />
+    <Content Include="bin\Release\netcoreapp2.1\IVSource.runtimeconfig.dev.json" />
+    <Content Include="bin\Release\netcoreapp2.1\IVSource.runtimeconfig.json" />
+    <Content Include="bin\Release\netcoreapp2.1\libman.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CaptchaMvc.Mvc3" Version="1.5.0" />
+    <PackageReference Include="CaptchaMvc.Mvc4" Version="1.5.0" />
+    <PackageReference Include="CaptchaMvc.Mvc5" Version="1.5.0" />
+    <PackageReference Include="cloudscribe.Pagination.Models" Version="1.1.0" />
+    <PackageReference Include="cloudscribe.Web.Pagination" Version="2.1.11" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
+    <PackageReference Include="jQuery.UI.Combined" Version="1.12.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.14">
+      <!--<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.14" />-->
+
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="ReCaptcha-AspNet" Version="1.9.0" />
+    <PackageReference Include="ReflectionIT.Mvc.Paging" Version="3.4.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\IvsVisaCategoriesForms\DownloadVisaFormrr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCategoriesForms_User\DownloadVisaFormrr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCategoriesForms_User\DownloadVisaFormr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCategories_User\VisaNoteFeesr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountriesDetails_User\WorldFactBook.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountriesDetails_User\CountryFactFinderr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountriesDiplomaticRepr_User\DiplomaticRepresentations.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountries\SearchCountry.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountries\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountryAdvisories_User\Advisories.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountryAdvisories_User\ReciprocalVisar.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCountryAdvisories_User\ThreeAdvisoryr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCovidInformation_User\CovidInformationrr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaCovidInformation_User\CovidInformationr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaHelpAddresses_User\InternationalHelpAddress.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaHelpAddresses_User\Indian_Mission_Overseasr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaHelpAddresses_User\International_Help_Addressr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaPagesOurContent\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\IvsVisaPagesOurContent\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\PartialViews\LatestNews.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\PartialViews\Gallery.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\PartialViews\ContactUs.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\PartialViews\SubscribeToUs.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\PartialViews\Services.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Admin\_LayoutAdminVisaDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Admin\_LayoutAdmin.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutMemberPageNoData.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutMemberPage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutPage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="images\News\" />
+    <Folder Include="wwwroot\images\Partners\" />
+    <Folder Include="wwwroot\images\VisitorsArea\" />
+    <Folder Include="wwwroot\images\News\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp2.1\IVSource.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\IVSource.pdb" />
+    <None Include="bin\Debug\netcoreapp2.1\IVSource.Views.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\IVSource.Views.pdb" />
+    <None Include="bin\Release\netcoreapp2.1\IVSource.dll" />
+    <None Include="bin\Release\netcoreapp2.1\IVSource.pdb" />
+    <None Include="bin\Release\netcoreapp2.1\IVSource.Views.dll" />
+    <None Include="bin\Release\netcoreapp2.1\IVSource.Views.pdb" />
+    <None Include="obj\IVSource.csproj.nuget.cache" />
+    <None Include="obj\IVSource.csproj.nuget.g.props" />
+    <None Include="obj\IVSource.csproj.nuget.g.targets" />
+  </ItemGroup>
+
+</Project>

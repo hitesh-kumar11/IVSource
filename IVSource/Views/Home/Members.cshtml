@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Members";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<form id="searchForm" name="searchForm" action="wait.html" method="POST" onsubmit="return validateForm()">
+    <div class="hdr"><h4>Members Area Only</h4></div>
+    <input type="text" placeholder="User Name" class="text" name="user_name">
+    <input type="password" class="text" placeholder="Password" name="password">
+    <input type="hidden" class="text" placeholder="Terminal Id" name="terminal_id">
+    <input type="submit" value="Login" class="btn lgn">
+    <p class="lgn_btm_lk">
+        <a href="register.html">Registration</a><br>
+        <a href="mailto:ivarma@airtelmail.in">Forgot password?</a>
+    </p>
+</form>

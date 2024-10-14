@@ -1,0 +1,137 @@
+﻿@model IVSource.Models.IvsVisaClientIpRegistration
+
+@{
+    ViewData["Title"] = "Client IP Registration";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">
+
+
+<div class="container">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Add </h2>
+        <hr />
+        @{if (TempData["Message"] != null)
+            {
+                <h4 style="color:red;">@TempData["Message"]</h4>
+                <br />
+            }
+        }
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="SerialNum" class="form-control" type="hidden" />
+                <label asp-for="Company" class="control-label"></label>
+                <select asp-for="Company" asp-items="@(new SelectList(Model.UserDetail,"Company","Company"))" class="form-control" onchange="getData(this)" id="ddlCompany">
+                    <option value="">Please select one</option>
+                </select>
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="divIPAddrBlock">
+                <label asp-for="IpAddress" class="control-label"></label>
+                <div class="clear"></div>
+                <input asp-for="IpAddress" type="hidden" class="form-control inpIpAddressHid" />
+                <input asp-for="IpAddress" class="form-control inpIpAddress" id="firstIP" /><span class="Add"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>&nbsp;&nbsp;<span class="Remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
+                <div class="clear lastB"></div>
+            </div>
+            @*<span class="text-danger spValidIP" style="display:none;">Please enter valid Ip Address</span>*@
+            <span asp-validation-for="IpAddress" class="text-danger"></span>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default blue-button" onclick="setIPAddress()" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/select2/js/select2.full.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(".Add").on("click", function () {
+            //if ($(".inpIpAddress").length < 5) {
+            $("#divIPAddrBlock").append("<div><br><input class=\"form-control inpIpAddress\" /><br></div>");
+            //}
+        });
+        $(".Remove").on("click", function () {
+            if ($(".inpIpAddress").length > 1) {
+                $("#divIPAddrBlock").children().last().remove();
+            }
+        });      
+
+        function getData(data)
+        {
+            $.ajax({
+                type: "Post",
+                url: "CheckAndGetDataForCompany",
+                dataType: "text",
+                data: {
+                    "Company": data.value
+                },
+                success: function (data) {
+                    if (data != null) {
+                        var allData = JSON.parse(data);
+                        if (!$.trim(allData)) {                          
+                            $("#firstIP").val("");
+                            if ($(".inpIpAddress").length > 1) {
+                                $("#divIPAddrBlock").children().last().remove();
+                            }
+                        }
+                        else {
+                            $.each(allData, function (index, value) {
+                                if (index == 0) {
+                                    $("#firstIP").val(value.ipAddress);
+                                    $("#SerialNum").val(value.serialNum);
+                                    if ($(".inpIpAddress").length > 1) {
+                                        $("#divIPAddrBlock").children().last().remove();
+                                    }
+                                }
+                                else {
+                                    $("#divIPAddrBlock").append("<div><br><input class=\"form-control inpIpAddress toRem\" value='" + value.ipAddress + "' /><br></div>");
+                                }
+                            });
+                        }                       
+                        //debugger;
+                    }                   
+                }
+            });
+        }     
+
+        function setIPAddress() {
+            //var count = 0;
+            var inpIpAddressHidData = "";
+            $(".inpIpAddress").each(function (index) {
+                var val = $(this).val();
+                if ($(this).is(":visible")) {
+                    if (val != "") {
+                        inpIpAddressHidData += "#" + $(this).val();
+                    }
+                    //else
+                    //    count++;
+                }
+            });
+            if (inpIpAddressHidData != "") {
+                $(".inpIpAddressHid").val(inpIpAddressHidData);
+                return true;
+            }
+            else {
+                $(".inpIpAddressHid").val("");
+                $(".spValidIP").show();
+                return false;
+            }
+            //if (count == 0)
+            //else
+        }
+
+        $("#ddlCompany").select2({
+            placeholder: "Select Country",
+            theme: "bootstrap4",
+            allowClear: true
+        });
+    </script>
+}

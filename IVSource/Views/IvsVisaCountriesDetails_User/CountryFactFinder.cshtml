@@ -1,0 +1,134 @@
+﻿@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "Country Fact Finder";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/jquery.hoverZoom.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script src="~/js/jquery.hoverZoom.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('.thumb img').hoverZoom({
+            speedView: 600,
+            speedRemove: 400,
+            showCaption: true,
+            speedCaption: 600,
+            debug: true,
+            hoverIntent: true,
+            UseBgImg: true
+        });
+    });
+</script>
+
+<div id="id-1" class="penal_cont_area">
+    <div class="penal_cont">
+        <h2 style="color:black; margin-top: -2%;">Country Fact Finder</h2>
+        <div class="row">
+            @foreach (var x in Model)
+            {
+                <div class="col-md-9">
+                    <b>Name:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryName))</label>
+                    <br />
+                    <br />
+                    <b>Location:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryLocation))</label>
+                    <br />
+                    <br />
+                    <b>Time:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryTime))</label>
+                    <br />
+                    <br />
+                    <b>Capital:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryCapital))</label>
+                </div>
+            }
+            <br />
+            <br />
+            @foreach (var x in Model)
+            {
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <div class="imgDiv">
+                            <a href="~/Uploads/CountryLargeMap/@x.countryfactfinderr.CountryLargeMap">
+                                <img src="~/Uploads/CountrySmallMap/@x.countryfactfinderr.CountrySmallMap" class="map" height="80px;" alt="@x.countryfactfinderr.bCountryName" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                @foreach (var x in Model)
+                {
+
+                    <b>Language:</b>
+                    @Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryLanguages))
+                    <br />
+                    <br />
+                    <b>Area:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryArea))</label>
+                    <br />
+                    <br />
+                    <b>Population:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryPopulation))</label>
+                    <br />
+                    <br />
+                    <b>National Day:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryNationalDay))</label>
+                    <br />
+                    <br />
+                    <b>Currency:</b>
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryCurrency))</label>
+                    <br />
+                    <br />
+                    <b>Climate:</b>
+                    @Html.Raw(System.Net.WebUtility.HtmlDecode(x.countryfactfinderr.CountryClimate))
+
+                }
+                <br />
+                <br />
+
+                @foreach (var x in Model)
+                {
+
+                    <b>Holidays : </b>
+                    @foreach (var obj in x.HolidayName1)
+                    {
+                        <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(obj.HolidayName))</label>
+                        @*<label>,</label>*@
+                    }
+                }
+                <br />
+                <b>Airline Name:</b>
+                @foreach (var x in Model)
+                {
+                    @foreach (var obj in x.AirlineName1)
+                    {
+                        <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(obj.AirlineName))</label>
+                        <label>(@Html.Raw(System.Net.WebUtility.HtmlDecode(obj.AirlineCode)))</label>
+                    }
+                }
+                <br />
+                <br />
+                <b>International Airports:</b>
+                @foreach (var x in Model)
+                {
+                    <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(x.AirportNameCode))</label>
+                    @*@foreach (var obj in x.AirportName1)
+            {
+            <label>@Html.Raw(System.Net.WebUtility.HtmlDecode(obj.AirportName))</label>
+            <label>(@Html.Raw(System.Net.WebUtility.HtmlDecode(obj.AirportCode)))</label>
+            }*@
+                }
+            </div>
+            </div>
+            </div>
+    </div>
+

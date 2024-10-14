@@ -1,0 +1,154 @@
+﻿@model IVSource.Models.IvsVisaCategories
+
+@{
+    ViewData["Title"] = "AIRPORTS";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Add</h2>
+        <hr />
+        <form asp-action="Add" asp-controller="IvsVisaCategories" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label"></label>
+                <select asp-for="CityId" class="form-control">
+                    <option value="">Please Select</option>
+                    <option value="BLR8DL9D9H8">Bangalore</option>
+                    <option value="CCUX67W7Z3M">Kolkata</option>
+                    <option value="DELY79S2B5V">Delhi</option>
+                    <option value="HYD4FY5Q8B6">Hyderabad</option>
+                    <option value="IXAT12A9Q8F">Agartala</option>
+                    <option value="MAAZ8W9T98V">Chennai</option>
+                    <option value="MUMG7U9M52S">Mumbai</option>
+                    <option value="PNY4LC7R46E">Pondicherry</option>
+                    <option value="TRVV92DR4E8">Thiruvananthapuram</option>
+                </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategory" class="control-label"></label>
+                <input asp-for="VisaCategory" class="form-control" />
+                <span asp-validation-for="VisaCategory" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryCode" class="control-label"></label>
+                <input asp-for="VisaCategoryCode" class="form-control" />
+                <span asp-validation-for="VisaCategoryCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryInformation" class="control-label"></label>
+                <input asp-for="VisaCategoryInformation" type="hidden" />
+                <div id="div_editor1">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryInformationVisaProcedure" class="control-label"></label>
+                <input asp-for="VisaCategoryInformationVisaProcedure" type="hidden" />
+                <div id="div_editor2">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryInformationDocumentsRequired" class="control-label"></label>
+                <input asp-for="VisaCategoryInformationDocumentsRequired" type="hidden" />
+                <div id="div_editor3">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryInformationProcessingTime" class="control-label"></label>
+                <input asp-for="VisaCategoryInformationProcessingTime" type="hidden" />
+                <div id="div_editor4">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryNotes" class="control-label"></label>
+                <input asp-for="VisaCategoryNotes" type="hidden" value="" />
+                <div id="div_editor5"></div>
+                <span asp-validation-for="VisaCategoryNotes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisaCategoryRequirements" class="control-label"></label>
+                <input asp-for="VisaCategoryRequirements" type="hidden" value="" />
+                <div id="div_editor6"></div>
+                <span asp-validation-for="VisaCategoryRequirements" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" type="number" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default blue-button" />
+            </div>
+
+            <div>
+                <a asp-action="Index" asp-controller="IvsVisaCategories">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            var editor1 = new RichTextEditor("#div_editor1");
+            var editor2 = new RichTextEditor("#div_editor2");
+            var editor3 = new RichTextEditor("#div_editor3");
+            var editor4 = new RichTextEditor("#div_editor4");
+            var editor5 = new RichTextEditor("#div_editor5");
+            var editor6 = new RichTextEditor("#div_editor6");
+            editor1.attachEvent("change", function () { document.getElementById("VisaCategoryInformation").value = editor1.getHTMLCode(); });
+            editor2.attachEvent("change", function () { document.getElementById("VisaCategoryInformationVisaProcedure").value = editor2.getHTMLCode(); });
+            editor3.attachEvent("change", function () { document.getElementById("VisaCategoryInformationDocumentsRequired").value = editor3.getHTMLCode(); });
+            editor4.attachEvent("change", function () { document.getElementById("VisaCategoryInformationProcessingTime").value = editor4.getHTMLCode(); });
+            editor5.attachEvent("change", function () { document.getElementById("VisaCategoryNotes").value = editor5.getHTMLCode(); });
+            editor6.attachEvent("change", function () { document.getElementById("VisaCategoryRequirements").value = editor6.getHTMLCode(); });
+        });
+
+        var tryNumber = 0;
+        jQuery('input[type=submit]').click(function (event) {
+            var self = $(this);
+
+            if (self.closest('form').valid()) {
+                if (tryNumber > 0) {
+                    tryNumber++;
+                    alert('Your form has been already submited. wait please');
+                    return false;
+                }
+                else {
+                    tryNumber++;
+                }
+            };
+        });
+
+    </script>
+}
+
+
+

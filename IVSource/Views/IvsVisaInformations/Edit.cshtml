@@ -1,0 +1,81 @@
+﻿@model IVSource.Models.IvsVisaInformation
+
+@{
+    ViewData["Title"] = "Visa Information";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update</h2>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SerialNum" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            <div class="form-group">
+                <label asp-for="VisaInformation" class="control-label"></label>
+                <br />
+                <input asp-for="VisaInformation" type="hidden" />
+                <div id="div_editor1">
+                </div>
+                <span asp-validation-for="VisaInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaGeneralInformation" class="control-label"></label>
+                <br />
+                <input asp-for="VisaGeneralInformation" type="hidden" />
+                <div id="div_editor2">
+                </div>
+                <span asp-validation-for="VisaGeneralInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" type="number" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            var editor1 = new RichTextEditor("#div_editor1");
+            var editor2 = new RichTextEditor("#div_editor2");
+            var divCustom1 = $("<div/>").html(("@System.Net.WebUtility.HtmlDecode(Model.VisaInformation)"));
+            var divCustom2 = $("<div/>").html(("@System.Net.WebUtility.HtmlDecode(Model.VisaGeneralInformation)"));
+            editor1.setHTMLCode(divCustom1.text());
+            editor2.setHTMLCode(divCustom2.text());
+            editor1.attachEvent("change", function () { document.getElementById("VisaInformation").value = editor1.getHTMLCode(); });
+            //editor1.attachEvent("hover", function () { alert("sa"); });
+            editor2.attachEvent("change", function () { document.getElementById("VisaGeneralInformation").value = editor2.getHTMLCode(); });
+
+            //$("body").on('DOMSubtreeModified', "#div_editor1", function () {
+            //    document.getElementById("VisaInformation").value = editor1.getHTMLCode();
+            //});
+            //$("body").on('DOMSubtreeModified', "#div_editor2", function () {
+            //    document.getElementById("VisaGeneralInformation").value = editor2.getHTMLCode();
+            //});
+
+            //editor1.attachEvent('change, keydown', function () {
+            //    alert("vdf");
+            //});
+        });
+    </script>
+}

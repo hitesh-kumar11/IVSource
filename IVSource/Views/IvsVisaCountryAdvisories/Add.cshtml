@@ -1,0 +1,52 @@
+﻿@model IVSource.Models.IvsVisaCountryAdvisories
+
+@{
+    ViewData["Title"] = "3 Advisories";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Add</h2>
+        <hr />
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            <div class="form-group">
+                <label asp-for="Advisory" class="control-label"></label>
+                <input asp-for="Advisory" type="hidden" />
+                <div id="div_editor1">
+                </div>
+                <span asp-validation-for="Advisory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdvisoryType" class="control-label"></label>
+                <select asp-for="AdvisoryType" class="form-control">
+                    <option value="">Please Select</option>
+                    <option value="INTAD">International Advisory</option>
+                    <option value="IVSAD">IVSource Advisory</option>
+                    <option value="RECVIS">Reciprocal Visa</option>
+                </select>
+                <span asp-validation-for="AdvisoryType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-default blue-button" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            var editor1 = new RichTextEditor("#div_editor1");
+
+            editor1.attachEvent("change", function () {document.getElementById("Advisory").value = editor1.getHTMLCode();});
+
+        });
+    </script>
+}

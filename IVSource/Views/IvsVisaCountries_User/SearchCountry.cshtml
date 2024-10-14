@@ -1,0 +1,55 @@
+﻿@model IVSource.Models.IvsVisaCountries
+@{
+    ViewData["Title"] = "Welcome to IVSource!";
+    Layout = "~/Views/Shared/_LayoutMemberPageNoData.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">
+
+
+@section CustomStyles{
+    <style>
+        #secondary {
+            display: none;
+        }
+
+        .right-sidebar .content-area {
+            border-right: unset;
+        }
+
+        i.fa.fa-stack-2x.fa-power-off {
+            margin-top: 2px !important;
+        }
+    </style>
+}
+<article id="post-344" class="post-344 page type-page status-publish hentry">
+    <header class="entry-header"></header>
+    <div class="entry-content col-md-6">
+        <h3>Search Country</h3>
+        <form asp-action="CountryFactFinder" asp-controller="IvsVisaCountriesDetails_User" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select id="ddlCountry" asp-for="CountryName" asp-items="@(new SelectList(ViewBag.listCities, "Country", "Country"))" class="form-control" style="width:250px;">
+                    <option>Select Country </option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default"/>
+            </div>
+        </form>
+    </div>
+</article>
+
+@section Scripts{
+    <script src="~/lib/select2/js/select2.full.min.js"></script>
+    <script>
+        $("#ddlCountry").select2({
+            placeholder: "Select Country",
+            theme: "bootstrap4",
+            allowClear: true
+        });
+
+    </script>
+}

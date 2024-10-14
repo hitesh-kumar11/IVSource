@@ -1,0 +1,32 @@
+﻿@model IVSource.Models.HomePage
+
+<main id="main" class="site-main" role="main">
+    <article id="post-6097 post type-post status-publish format-standard has-post-thubnail hentry category-uncategorized">
+        <header class="entry-header">
+            @foreach (var obj in Model.SubPagesNews)
+            {
+                <h1 class="entry-title" style="color:black">@obj.Title</h1>
+            }
+
+            @foreach (var y in Model.SubPagesNews)
+            {
+                <div class="entry-meta">
+                    <span class="posted-on">
+                        Posted On
+                        <a asp-action="LatestNews">
+                            <time class="entry-date published">@y.CreatedDate.ToLongDateString()</time>
+                        </a>
+                    </span>
+                </div>
+            }
+        </header>
+        @foreach (var x in Model.SubPagesNews)
+        {
+            <div class="entry-content">
+                <p>@Html.Raw(x.Description)</p>
+            </div>
+        }
+    </article>
+</main>
+
+

@@ -1,0 +1,121 @@
+﻿@model IVSource.Models.IvsVisaCountriesDiplomaticRepresentation
+
+@{
+    ViewData["Title"] = "DIPLOMATIC REPRESENTATIONS";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update</h2>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SerialNum" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            <div class="form-group">
+                <label asp-for="OfficeName" class="control-label"></label>
+                <input asp-for="OfficeName" class="form-control" />
+                <span asp-validation-for="OfficeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeAddress" class="control-label"></label>
+                <input asp-for="OfficeAddress" class="form-control" />
+                <span asp-validation-for="OfficeAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeCity" class="control-label"></label>
+                <input asp-for="OfficeCity" class="form-control" />
+                <span asp-validation-for="OfficeCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficePincode" class="control-label"></label>
+                <input asp-for="OfficePincode" type="number" class="form-control" />
+                <span asp-validation-for="OfficePincode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeCountry" class="control-label"></label>
+                <input asp-for="OfficeCountry" class="form-control" />
+                <span asp-validation-for="OfficeCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficePhone" class="control-label"></label>
+                <input asp-for="OfficePhone" class="form-control" />
+                <span asp-validation-for="OfficePhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeTelephoneVisa" class="control-label"></label>
+                <input asp-for="OfficeTelephoneVisa" class="form-control" />
+                <span asp-validation-for="OfficeTelephoneVisa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeFax" class="control-label"></label>
+                <input asp-for="OfficeFax" class="form-control" />
+                <span asp-validation-for="OfficeFax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeTimings" class="control-label"></label>
+                <input asp-for="OfficeTimings" class="form-control" />
+                <span asp-validation-for="OfficeTimings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeVisaTimings" class="control-label"></label>
+                <input asp-for="OfficeVisaTimings" class="form-control" />
+                <span asp-validation-for="OfficeVisaTimings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficePublicTimings" class="control-label"></label>
+                <input asp-for="OfficePublicTimings" class="form-control" />
+                <span asp-validation-for="OfficePublicTimings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeCollectionTimings" class="control-label"></label>
+                <input asp-for="OfficeCollectionTimings" class="form-control" />
+                <span asp-validation-for="OfficeCollectionTimings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeEmail" class="control-label"></label>
+                <input asp-for="OfficeEmail" class="form-control" />
+                <span asp-validation-for="OfficeEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeWebsite" class="control-label"></label>
+                <input asp-for="OfficeWebsite" class="form-control" />
+                <span asp-validation-for="OfficeWebsite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeNotes" class="control-label"></label>
+                <input asp-for="OfficeNotes" class="form-control" />
+                <span asp-validation-for="OfficeNotes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TerritoryJurisdiction" class="control-label"></label>
+                <input asp-for="TerritoryJurisdiction" class="form-control" />
+                <span asp-validation-for="TerritoryJurisdiction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

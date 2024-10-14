@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "AddCountry";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/addcountry.css" />
+</head>
+<body>
+<div class="wrapper">
+    <section class="panel-details">
+        <div class="wrapper">
+            <div class="panel-content" style="padding: 5px 25px;">
+                <p class="page-heading">Add A New Country</p>
+                <form class="user" name="savecountryForm" method="POST">
+                    <p>
+                        <label>Country Name : </label>
+                        <input type="text"  name="country_name"/>
+                    </p>
+                    <p>
+                        <lable>Country ISO : </lable>
+                        <input type="text" name="country_iso"/>
+                    </p>
+                    <p>
+                        <lable>Is Enabled : </lable>
+                        <select>
+                            <option>Select</option>
+                            <option value="1">Enable</option>
+                            <option value="0">Disable</option>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" value="Add" asp-controller="Hone" asp-action="AddCountry" />
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+

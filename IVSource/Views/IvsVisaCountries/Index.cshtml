@@ -1,0 +1,72 @@
+﻿@model IVSource.Models.IvsVisaCountries
+@{
+    ViewData["Title"] = "Add Country";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/addcountry.css" />
+</head>
+<body>
+    <div class="containers">
+        <form method="post" asp-controller="IvsVisaCountries" asp-action="Index">
+            <div class="p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    <p class="text-success">@ViewBag.result</p>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="margin-left: 4.3em">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="CountryName"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="CountryName" class="form-control" />
+                                <span asp-validation-for="CountryName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="CountryIso"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="CountryIso" class="form-control" id="countryIso" onchange="ToUpper()" />
+                                <span asp-validation-for="CountryIso" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="IsEnable"></label>
+                            </div>
+                            <div class="col-8">
+                                <select asp-for="IsEnable" class="form-control">
+                                    <option value="">Please Select</option>
+                                    <option value="1">Enable</option>
+                                    <option value="0">Disable</option>
+                                </select>
+                                <span asp-validation-for="IsEnable" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-8">
+                                <input type="submit" class="btn btn-info w-100" value="Save" onclick="" id="toastrSuccess" />
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Index" asp-controller="ManageCountry">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

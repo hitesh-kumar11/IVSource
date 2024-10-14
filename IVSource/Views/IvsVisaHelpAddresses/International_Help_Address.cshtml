@@ -1,0 +1,46 @@
+﻿@model IEnumerable<IVSource.Models.IvsVisaHelpAddress>
+@{
+    ViewData["Title"] = "International Help Address";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+<h2 style="color:black; margin-top:-2%;">International Help Address</h2>
+<div>
+    @foreach (var x in Model)
+    {
+        @if (x.OfficeName != null && x.OfficeName != "")
+        {
+            <p><b>Name:</b>  @Html.DisplayFor(model => x.OfficeName)</p>
+        }
+        @if (x.OfficeAddress != null && x.OfficeAddress != "")
+        {
+            <p><b>Address: </b>  @Html.DisplayFor(model => x.OfficeAddress)</p>
+        }
+
+        @if (x.OfficeCity != null && x.OfficeCity != "")
+        {
+            <p><b>City:</b>  @Html.DisplayFor(model => x.OfficeCity)</p>
+        }
+        @if (x.OfficeCountry != null && x.OfficeCountry != "")
+        {
+            <p><b>Country:</b>  @Html.DisplayFor(model => x.OfficeCountry)</p>
+        }
+        @if (x.OfficePhone != null && x.OfficePhone != "")
+        {
+            <p><b>Telephone:</b>  @Html.DisplayFor(model => x.OfficePhone)</p>
+        }
+        @if (x.OfficeFax != null && x.OfficeFax != "")
+        {
+            <p><b>Fax:</b>  @Html.DisplayFor(model => x.OfficeFax)</p>
+        }
+        @if (x.OfficeEmail != null && x.OfficeEmail != "")
+        {
+            <p><b>Email:</b>  @Html.DisplayFor(model => x.OfficeEmail)</p>
+        }
+        @if (x.OfficeWebsite != null && x.OfficeWebsite != "")
+        {
+            <p><b>Website:</b> <a href="//@x.OfficeWebsite.Replace(" ", "")" target="_blank"> @Html.DisplayFor(model => x.OfficeWebsite) </a><br /><br /></p>
+        }
+        <br /><br />
+    }
+
+</div>

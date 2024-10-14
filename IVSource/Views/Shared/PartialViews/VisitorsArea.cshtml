@@ -1,0 +1,38 @@
+﻿@model IVSource.Models.HomePage
+
+<section id="visitors" class="section-features section-padding section-meta onepage-section">
+    <div class="container">
+        @if (Model.VisitorsArea.visitorsArea.Description != null)
+        {
+        <div class="section-title-area">
+            <h2 class="section-title">@Model.VisitorsArea.visitorsArea.Title</h2>
+            <div class="section-desc">
+                <p>@Html.Raw(Model.VisitorsArea.visitorsArea.Description)</p>
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="row">
+                @foreach (var x in Model.VisitorsList)
+                {
+                    @if (x.IsEnable != false)
+                    {
+                    <div class="feature-item col-lg-3 col-sm-6 slideInUp">
+                        <div class="feature-media">
+                        </div>
+                        <h4></h4>
+                        <div class="feature-item-content">
+                            <a asp-controller="IvsVisaSubPages" asp-action="CountryFactFinderr" asp-route-countryName="@x.Title">
+                                        <img src="~/images/VisitorsArea/@x.Image" width="100" />@*~/images/VisitorsArea/@x.Image*@
+                                <p>@x.Title</p>
+                            </a>
+                        </div>
+                    </div>
+                    }
+                 }
+            </div>
+        </div>
+
+
+        }
+    </div>
+</section>

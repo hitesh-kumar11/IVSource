@@ -1,0 +1,145 @@
+﻿@model IVSource.Models.IvsUserDetails
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IvsUserDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CorporateId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CorporateId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Designation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Designation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TerminalIdNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TerminalIdNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidFrom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValidFrom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValidTo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEnable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsEnable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SerialNum">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

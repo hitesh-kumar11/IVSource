@@ -1,0 +1,56 @@
+﻿@model IVSource.Models.IvsVisaCountriesHolidays
+
+@{
+    ViewData["Title"] = "HOLIDAYS";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update</h2>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HolidayId" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            
+            <div class="form-group">
+                <label asp-for="HolidayName" class="control-label"></label>
+                <input asp-for="HolidayName" type="hidden" />
+                <div id="div_editor1">
+                    @System.Net.WebUtility.HtmlDecode(Model.HolidayName)
+                </div>
+                <span asp-validation-for="HolidayName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+         $(document).ready(function () {
+            var editor1 = new RichTextEditor("#div_editor1");
+            var divCustom = $("<div/>").html(("@System.Net.WebUtility.HtmlDecode(Model.HolidayName)")); 
+            editor1.setHTMLCode(divCustom.text());
+            editor1.attachEvent("change", function () {
+                document.getElementById("HolidayName").value = editor1.getHTMLCode();
+            });
+        });
+    </script>
+}
+

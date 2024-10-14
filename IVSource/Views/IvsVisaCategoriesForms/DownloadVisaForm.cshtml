@@ -1,0 +1,27 @@
+﻿@model IEnumerable<IVSource.Models.IvsVisaCategoriesForms>
+@{
+    ViewData["Title"] = "Download Visa Form";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+<h2 style="color:black; margin-top:-2%;">Download Visa Form</h2>
+
+<input type="hidden" name="FormPath" id="FormPath" />
+
+<table class="table">
+    <tbody>
+      
+            @foreach (var x in Model)
+            {
+                @if (x.FormPath != null || x.FormPath == "")
+                {
+                <tr>
+                    <td style="width:30%"> @Html.DisplayFor(model => x.Form)</td>
+                    <td>
+                        <a a href="/IvsVisaCategoriesForms/DownloadFile?FormPath=@x.FormPath" target="_blank">Download Visa Form</a>
+                    </td>
+                </tr>
+                <tr style="display:none"><td>@Html.DisplayFor(model => x.FormPath)</td></tr>
+                    }
+                }
+    </tbody>
+</table>

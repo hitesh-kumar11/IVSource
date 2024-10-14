@@ -1,0 +1,30 @@
+﻿@model IVSource.Models.HomePage
+@using Microsoft.AspNetCore.Http.Extensions
+@{
+    @foreach (var obj in Model.PagesOurContent)
+    {
+        ViewData["Title"] = obj.Title;
+    }
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<article id="post-188" class="post-188 page type-page status-publish hentry">
+    <header class="entry-header"></header><!-- .entry-header -->
+
+    <div class="entry-content">
+        @foreach (var model in Model.PagesOurContent)
+        {
+            @if (model.Description != null)
+            {
+                <p>@Html.Raw(model.Description)</p>
+            }
+        }
+
+        @{          
+            var host = Context.Request.Scheme + "://" + Context.Request.Host;            
+        }       
+        @*<label>@host</label>*@
+        @*<div class="content-button left-button blue small subsBtn"><a href="@host/subscribe-to-us/">Subscribe To Us</a></div>*@
+    </div>
+</article>
+

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "ThreeAdvisory";
+    Layout = "~/Views/Shared/_LayoutMemberPageCountries.cshtml";
+}
+@foreach (var x in Model)
+{
+    <h2 style="color:black; margin-top:-2%;">Advisories</h2>
+    <br />
+    <div>
+        <p><b>IVSource Advisory:</b></p>
+        @foreach (var obj in x.threeadvisories)
+        {
+            @if (obj.AdvisoryType == "IVSAD")
+            {
+                @Html.Raw(x.threeadvisories.Where(n => n.AdvisoryType == "IVSAD").First().Advisory)
+            }
+        }
+    </div>
+    <div>
+        <p><b>SAARC Advisory:</b></p>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Visa Required</th>
+                    <th>Apply At</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var y in x.saarcDetails)
+                {
+                    @if (y.IsEnable == 1)
+                    {
+                    <tr>
+                        <td style="border:1px solid grey">@Html.Raw(y.CountryName)</td>
+                        <td style="border:1px solid grey">@Html.Raw(y.IsVisaRequired)</td>
+                        <td style="border:1px solid grey">@Html.Raw(y.VisaApplyWhere)</td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        @foreach (var z in x.saarcDetails)
+        {
+            @if (z.IsEnable == 1)
+            {
+            @if (z.VisaOfficeName != null && z.VisaOfficeName != "")
+            {
+                <p><b>Name:</b> @Html.DisplayFor(model => z.VisaOfficeName)</p>
+            }
+            @if (z.VisaOfficeAddress != null && z.VisaOfficeAddress != "")
+            {
+                <p><b>Address:</b> @Html.DisplayFor(model => z.VisaOfficeAddress)</p>
+            }
+            @if (z.VisaOfficeCity != null && z.VisaOfficeCity != "")
+            {
+                <p><b>City:</b> @Html.DisplayFor(model => z.VisaOfficeCity)</p>
+            }
+            @if (z.VisaOfficeCountry != null && z.VisaOfficeCountry != "")
+            {
+                <p><b>Country:</b> @Html.DisplayFor(model => z.VisaOfficeCountry)</p>
+            }
+            @if (z.VisaOfficeTelephone != null && z.VisaOfficeTelephone != "")
+            {
+                <p><b>Telephone:</b> @Html.DisplayFor(model => z.VisaOfficeTelephone)</p>
+            }
+            @if (z.VisaOfficeFax != null && z.VisaOfficeFax != "")
+            {
+                <p><b>Fax:</b> @Html.DisplayFor(model => z.VisaOfficeFax)</p>
+            }
+            <br />
+            }
+        }
+    </div>
+    <div>
+        <p><b>International Advisory:</b></p>
+        @foreach (var a in x.threeadvisories)
+        {
+            @if (a.AdvisoryType == "INTAD")
+            {
+                @Html.Raw(x.threeadvisories.Where(b => b.AdvisoryType == "INTAD").First().Advisory)
+            }
+        }
+    </div>
+}
+
+<style>
+    table, th, td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: grey;
+        color: white;
+        height: 50px;
+        border: 1px solid grey;
+    }
+
+    tr, th, td {
+        border: 1px solid grey;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    #example {
+        border: 1px solid;
+        box-shadow: 3px 3px 3px 3px #888;
+        padding: 20px;
+        width: 500px;
+        margin: 7em 0 0 9em;
+    }
+</style>

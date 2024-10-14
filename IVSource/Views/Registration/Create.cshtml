@@ -1,0 +1,74 @@
+﻿@model IVSource.Models.IvsUserDetails
+
+@{
+    ViewData["Title"] = "Registration Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Name" class="form-control" placeholder="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="UserName" class="form-control" placeholder="User Name" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password"  />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Designation" class="form-control" placeholder="Designation" required="required" data-msg="Please Enter Designation" />
+                <span asp-validation-for="Designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Company" class="form-control" placeholder="Company" required="required" data-msg="Please Enter Company" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Address" class="form-control" placeholder="Full Address" required="required" data-msg="Please Enter Full Address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="City" class="form-control" placeholder="City" required="required" data-msg="Please Enter City" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Country" class="form-control" placeholder="Country" required="required" data-msg="Please Enter Country"/>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Phone" type="number" class="form-control" placeholder="Phone Number" required="required" data-msg="Please Enter Phone Number"/>
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="AdditionalEmail" type="email" class="form-control" placeholder="Additional Email" />
+                <span asp-validation-for="AdditionalEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-default" onclick="checkPassword()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Members" asp-controller="Login">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function checkPassword() {
+
+        }
+    </script>
+}

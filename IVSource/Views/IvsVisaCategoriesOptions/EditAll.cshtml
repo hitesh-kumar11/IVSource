@@ -1,0 +1,57 @@
+﻿@model IVSource.Models.IvsVisaCategoriesOptions
+
+@{
+    ViewData["Title"] = "VISA FEES";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update </h2>
+        <hr />
+        <form asp-action="EditAll">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            @*<div class="form-group">
+                <label asp-for="VisaCategoryCode" class="col-for-label control-label"></label>
+                <select asp-for="VisaCategoryCode" asp-items="@(new SelectList(Model.VisaCategoryList,"VisaCategoryId","VisaCategory"))" class="form-control" >
+                    <option value="">Please select one</option>
+                </select>
+                <span asp-validation-for="VisaCategoryCode" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="VisaCategoryOption" class="control-label"></label>
+                <input asp-for="VisaCategoryOption" class="form-control" />
+                <span asp-validation-for="VisaCategoryOption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaCategoryOptionAmountInr" class="control-label"></label>
+                <input asp-for="VisaCategoryOptionAmountInr" class="form-control" />
+                <span asp-validation-for="VisaCategoryOptionAmountInr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaCategoryOptionAmountOther" class="control-label"></label>
+                <input asp-for="VisaCategoryOptionAmountOther" class="form-control" />
+                <span asp-validation-for="VisaCategoryOptionAmountOther" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

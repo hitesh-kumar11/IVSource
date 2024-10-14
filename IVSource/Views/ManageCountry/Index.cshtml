@@ -1,0 +1,122 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<IVSource.Models.IvsVisaCountries>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.MVC.Paging
+
+@{
+    ViewData["Title"] = "Edit Countries";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+<div class="containers" style="width:95%;">
+
+    <br />
+
+    <link rel="stylesheet" type="text/css" href="~/css/ManageUsers.css" />
+    <div>
+        @if(Convert.ToString(ViewBag.Message) != null)
+        {
+            <p class="text-success" style="text-align: center"> Convert.ToString(ViewBag.Message)</p>
+        }
+    </div>
+    <div class="form-group row">
+        <div class="col-md-6">
+            <div>
+                <a asp-action="Create" asp-controller="ManageCountry" class="btn btn-info form-control text-white" style="width:200px; margin-top: 0.9em;">
+                    Add New Country
+                </a>
+                <div style="padding-top:30px;">
+                    Total : @ViewBag.Total
+                 </div>
+                </div>
+            </div>
+
+        <div class="col-md-6 text-right">
+            <div>
+                <form asp-for="./Index" method="get">
+                    <div>
+                        <input type="text" name="searchString" value="" style="width:200px;  margin-top: 0.9em" />
+                        <input type="submit" value="Search" class="btn btn-default blue-button" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        <div style="padding-top:10px;">
+            <label class="lead" style="margin-top: 1.1em">  Show entries &nbsp;</label>
+
+            @Html.DropDownList("rowsToShow", new List<SelectListItem>
+            {
+              new SelectListItem { Text = "10", Value = "10"},
+              new SelectListItem { Text = "25", Value = "25"},
+              new SelectListItem { Text = "50", Value = "50"},
+              new SelectListItem { Text = "100", Value = "100"}
+            }, new { @style="margin-top: 1.1em"})
+
+
+            @if (Model.Count() > 0)
+            {
+        <div style="padding-top:20px;">
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.SortableHeaderFor(model => model.CountryName)</th>
+                        <th>@Html.SortableHeaderFor(model => model.CountryIso)</th>
+                        <th>@Html.SortableHeaderFor(model => model.IsEnable)</th>
+                        <th>@Html.SortableHeaderFor(model => model.ModifiedDate)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td>@obj.CountryName</td>
+                            <td>@obj.CountryIso</td>
+                            <td>@(obj.IsEnable == 1 ? "Yes" : "No")</td>
+                            <td>@obj.ModifiedDate</td>
+                            <td>
+                                <a asp-controller="ManageCountry" asp-action="Edit" asp-route-serialnum="@obj.SerialNum" class="btn btn-info">Edit</a>
+                                @*<a asp-controller="IvsVisaCountries" asp-action="Edit" asp-route-serialnum="@obj.SerialNum" class="btn btn-info">Edit</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+            }
+            else
+            {
+            <p>No Category Exists.</p>
+            }
+
+            <nav aria-label="Country Paging">
+                @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+            </nav>
+
+            <nav aria-label="Countries navigation example">
+                <vc:pager paging-list="@Model" />
+            </nav>
+
+        </div>
+
+        @section Scripts {
+            <script>
+                jQuery('#rowsToShow').change(function () {
+                    var currentUrl = jQuery(location).attr('href');
+                    var url;
+                    if (currentUrl.indexOf("?") != -1) {
+                        if (currentUrl.indexOf("rowsToShow") != -1) {
+                            var href = new URL(currentUrl);
+                            href.searchParams.set('rowsToShow', jQuery(this).val());
+                            url = href.toString();
+                        }
+                        else
+                            url = currentUrl + "&rowsToShow=" + jQuery(this).val();
+                    }
+                    else
+                        url = currentUrl + "?rowsToShow=" + jQuery(this).val();
+                    window.location.href = url;
+                });
+            </script>
+        }
+    </div>
+

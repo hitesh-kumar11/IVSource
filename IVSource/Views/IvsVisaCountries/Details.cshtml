@@ -1,0 +1,35 @@
+﻿@model IVSource.Models.IvsVisaCountries
+
+@{
+    ViewData["Title"] = "Country Details";
+
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+
+<div class="container">
+    @{if (TempData["Message"] != null)
+        {
+            <h4 style="color:green;">@TempData["Message"]</h4>
+        }
+        else
+        {
+            <h2>Details</h2>
+        }
+    }
+
+    <hr />
+    <dl class="dl-horizontal">
+        <br />
+        <dt>Country Name    &nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;   @Html.DisplayFor(model => model.CountryName)</dt>
+        <dt>Country Iso    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;   @Html.DisplayFor(model => model.CountryIso)</dt>
+        <dt>Created Date   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;   @Html.DisplayFor(model => model.CreatedDate)</dt>
+    </dl>
+
+    <br />
+    <br />
+    <div class="subsBtn">
+        <b> <a asp-action="VisaDetails" asp-controller="Admin">Back to Visa Details</a></b>
+    </div>
+</div>
+

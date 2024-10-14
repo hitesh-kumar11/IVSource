@@ -1,0 +1,106 @@
+﻿@model IVSource.Models.IvsVisaSaarcDetails
+
+@{
+    ViewData["Title"] = "SAARC ADVISORY";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update</h2>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label"></label>
+                <input asp-for="CountryId" class="form-control" />
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsVisaRequired" class="control-label"></label>
+                <input asp-for="IsVisaRequired" class="form-control" />
+                <span asp-validation-for="IsVisaRequired" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaApplyWhere" class="control-label"></label>
+                <input asp-for="VisaApplyWhere" class="form-control" />
+                <span asp-validation-for="VisaApplyWhere" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="VisaOfficeId" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            <div class="form-group">
+                <label asp-for="VisaOfficeName" class="control-label"></label>
+                <input asp-for="VisaOfficeName" class="form-control" />
+                <span asp-validation-for="VisaOfficeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeAddress" class="control-label"></label>
+                <input asp-for="VisaOfficeAddress" class="form-control" />
+                <span asp-validation-for="VisaOfficeAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeCity" class="control-label"></label>
+                <input asp-for="VisaOfficeCity" class="form-control" />
+                <span asp-validation-for="VisaOfficeCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficePincode" class="control-label"></label>
+                <input asp-for="VisaOfficePincode" class="form-control" />
+                <span asp-validation-for="VisaOfficePincode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeCountry" class="control-label"></label>
+                <input asp-for="VisaOfficeCountry" class="form-control" />
+                <span asp-validation-for="VisaOfficeCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeTelephone" class="control-label"></label>
+                <input asp-for="VisaOfficeTelephone" class="form-control" />
+                <span asp-validation-for="VisaOfficeTelephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeFax" class="control-label"></label>
+                <input asp-for="VisaOfficeFax" class="form-control" />
+                <span asp-validation-for="VisaOfficeFax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeEmail" class="control-label"></label>
+                <input asp-for="VisaOfficeEmail" class="form-control" />
+                <span asp-validation-for="VisaOfficeEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeWebsite" class="control-label"></label>
+                <input asp-for="VisaOfficeWebsite" class="form-control" />
+                <span asp-validation-for="VisaOfficeWebsite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeUrl" class="control-label"></label>
+                <input asp-for="VisaOfficeUrl" class="form-control" />
+                <span asp-validation-for="VisaOfficeUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisaOfficeNotes" class="control-label"></label>
+                <input asp-for="VisaOfficeNotes" class="form-control" />
+                <span asp-validation-for="VisaOfficeNotes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

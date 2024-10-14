@@ -1,0 +1,83 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<IVSource.Models.IvsVisaCountries>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.MVC.Paging
+
+@{
+    ViewData["Title"] = "Edit Countries";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<br />
+
+<link rel="stylesheet" type="text/css" href="~/css/addcountry.css" />
+
+<div class="container row p-0 m-0">
+    <div>
+        <a asp-action="Index" asp-controller="IvsVisaCountries" class="btn btn-info form-control text-white" style="width:200px; margin-top: 0.9em;">
+            Add New Country
+        </a>
+    </div>
+    <div>
+        <form asp-for="./Index" method="get">
+            <div>
+                <input type="text" name="searchString" value="" style="width:300px; margin-left:34.3em; margin-top: 0.9em; padding-bottom: 0.1em" />
+                <a class="btn btn-info" style="margin-bottom: 0.9em; color: white">Search</a>
+            </div>
+        </form>
+    </div>
+    @*Added by Nushrat to handle if no value return by Model*@
+    @if (Model == null)
+    {
+        <p>Country exists.</p>
+    }
+    else
+    {
+
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>SERIAL NO.</th>
+                        <th>COUNTRY NAME</th>
+                        <th>COUNTRY ISO</th>
+                        <th>IS ENABLED</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td>@obj.SerialNum</td>
+                            <td>@obj.CountryName</td>
+                            <td>@obj.CountryIso</td>
+                            <td>@obj.IsEnable</td>
+                            <td>
+
+                                <a asp-controller="IvsVisaCountries" asp-action="Edit" asp-route-serialnum="@obj.SerialNum" class="btn btn-info">Edit</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No Category Exists.</p>
+        }
+        <nav aria-label="Country Paging">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+        </nav>
+
+        <nav aria-label="Countries navigation example">
+            <vc:pager paging-list="@Model" />
+        </nav>
+    }
+
+
+
+</div>
+
+

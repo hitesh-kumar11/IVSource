@@ -1,0 +1,68 @@
+﻿@model IVSource.Models.HomePage
+
+@if (Model.News.pages.Description != null)
+{
+    <section id="news" class="section-news section-padding onepage-section">
+        <div class="container">
+            @*@if (Model.News.pages.Description != null)
+                {*@
+            <div class="section-title-area">
+                <h2 class="section-title">@Html.Raw(Model.News.pages.Title)</h2>
+            </div>
+            @*<div class="row">
+                    <div class="col-lg-12 col-sm-12 wow slideInUp">
+                        <p style="text-align:justify;">@Html.Raw(Model.News.pages.Description)</p>
+                    </div>
+                </div>*@
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="blog-entry wow slideInUp">
+                            <article id="post-5785" class="list-article clearfix post-5785 post type-post status-publish format-standard has-post-thumbnail hentry">
+                                @foreach (var x in Model.NewsList)
+                                {
+                                    <div class="list-article-thumb">
+                                        <a asp-controller="IvsVisaSubPages" asp-action="LatestNews" asp-route-Id="@x.Id">
+                                            <img width="275" height="150" src="~/images/News/@x.Image" class="attachment-onepress-blog-small size-onepress-blog-small wp-post-image" alt="" />
+                                        </a>
+                                    </div>
+                                    @*<br />*@
+                                    <div class="list-article-content" style="height: 170px">
+
+                                        <header class="entry-header">
+                                            <a asp-controller="IvsVisaSubPages" asp-action="LatestNews" asp-route-Id="@x.Id">
+                                                <h3>@Html.Raw(x.Title)</h3>
+                                            </a>
+                                        </header>
+
+                                        <div class="entry-excerpt">
+                                            @if (x.Description.Length > 250)
+                                            {
+                                                <p>@Html.Raw(x.Description.Substring(0, 205))...</p>
+                                            }
+                                            else if (x.Description.Length > 165 && x.Description.Length < 250)
+                                            {
+                                                <p>@Html.Raw(x.Description.Substring(0, 177))...</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@Html.Raw(x.Description)</p>
+                                            }
+                                        </div>
+                                    </div>
+                                    <hr />
+                                }
+
+                                <div class="all-news">
+                                    <a class="btn btn-theme-primary-outline" asp-controller="IvsVisaSubPages" asp-action="Blog">Read More</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*}*@
+        </div>
+    </section>
+}
+

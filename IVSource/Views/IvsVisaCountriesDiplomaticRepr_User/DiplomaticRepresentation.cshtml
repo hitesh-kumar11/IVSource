@@ -1,0 +1,117 @@
+﻿@*@model IEnumerable<IVSource.Models.IvsVisaCountriesDiplomaticRepresentation>*@
+@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "Diplomatic Representations";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+
+<div id="id-1" class="penal_cont_area">
+    <div class="penal_cont">
+        <h2 style="color:black;  margin-top: -2%; ">Diplomatic Representations</h2>
+        @foreach (var obj in Model)
+        {
+            @foreach (var x in obj.diplomaticrepresentation)
+            {
+                @if (x.IsEnable != 0)
+                {
+                <button class="accordion">@x.OfficeName, @x.OfficeCity &nbsp; <span class="blkDD"> <i class="fa fa-caret-down"></i></span></button>
+                <div class="panel" style="display: none;">
+                    @if (x.OfficeName != null && x.OfficeName != "")
+                    {
+                        <br />
+                        <b>Name : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeName)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeAddress != null && x.OfficeAddress != "")
+                    {
+                        <b>Address : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeAddress)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeCity != null && x.OfficeCity != "")
+                    {
+                        <b>City : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeCity)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeCountry != null && x.OfficeCountry != "")
+                    {
+                        <b>Country : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeCountry)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficePhone != null && x.OfficePhone != "")
+                    {
+                        <b>Telephone : </b>
+                        <label>@Html.DisplayFor(model => x.OfficePhone)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeFax != null && x.OfficeFax != "")
+                    {
+                        <b>Fax : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeFax)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeTimings != null && x.OfficeTimings != "")
+                    {
+                        <b>Office Timings : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeTimings)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeVisaTimings != null && x.OfficeVisaTimings != "")
+                    {
+                        <b>Visa Timings : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeVisaTimings)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeCollectionTimings != null && x.OfficeCollectionTimings != "")
+                    {
+                        <b>Collection Timings : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeCollectionTimings)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeEmail != null && x.OfficeEmail != "")
+                    {
+                        <b>Email : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeEmail)</label>
+                        <br />
+                    }
+
+                    @if (x.OfficeNotes != null && x.OfficeNotes != "")
+                    {
+                        <b>Notes : </b>
+                        <label>@Html.DisplayFor(model => x.OfficeNotes)</label>
+                        <br />
+                    }
+
+                    @if (x.TerritoryJurisdiction != null && x.TerritoryJurisdiction != "")
+                    {
+                        <b>Territory Jurisdiction : </b>
+                        <label>@Html.DisplayFor(model => x.TerritoryJurisdiction)</label>
+                    }
+                </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+@*<style>
+    #example {
+        border: 1px solid;
+        box-shadow: 3px 3px 3px 3px #888;
+        padding: 20px;
+        width: 500px;
+        margin: 7em 0 0 9em;
+    }
+</style>*@

@@ -1,0 +1,23 @@
+﻿@model IVSource.Models.IvsVisaPages
+
+<div id="contactDiv" class="col-sm-12 wow slideInUp" style="background-color: rgb(248, 249, 249)">
+
+    @*<br id="contactDiv"><br>*@
+
+    @if (Model.Description != null)
+    {
+    <div class="section-title-area">
+        <h2 class="section-title">@Html.Raw(Model.Title)</h2>
+    </div>
+
+    <div style="text-align: center">
+        <p>@Html.Raw(Model.Description)</p>
+    </div>
+
+    <br><br>
+
+    <div class="address-box">
+        <h3></h3>
+    </div>
+    }
+</div>

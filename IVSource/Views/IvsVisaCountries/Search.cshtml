@@ -1,0 +1,74 @@
+﻿@model IVSource.Models.IvsVisaCountries
+
+@{
+    ViewData["Title"] = "Visa Details";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">
+
+<div>
+    <div class="container row">
+        <div class="col-md-12">
+            <br />
+            <h3>Search Country</h3>
+
+            <hr />
+            @{if (TempData["Message"] != null)
+                {
+                    <h4 style="color:red;">@TempData["Message1"]</h4>
+                }
+            }
+            <form asp-action="Details" asp-controller="IvsVisaCountries">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SerialNum" />
+                @*<div class="form-group">
+                        <input />
+                    </div>*@
+                <div class="form-group">
+                    <br />
+                    @*<label asp-for="CountryName" class="control-label"></label>*@
+                    <select id="ddlCountry" asp-for="CountryName" asp-items="@(new SelectList(ViewBag.listCities, "Country", "Country"))" class="form-control">
+                        <option> - select - </option>
+                    </select>
+                </div>
+                <br />
+                @*<br />
+                    <br />*@
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-default blue-button" />
+                </div>
+            </form>
+            @*<div class="col-sm-6 text-right">
+                    <form asp-action="Details" asp-controller="IvsVisaCountries" class="form-inline" style="display: inline-block;">
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <input name="CountryName" class="form-control" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                            </button>
+                        </div>
+                    </form>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/select2/js/select2.full.min.js"></script>
+    <script>
+        $("#ddlCountry").select2({
+            placeholder: "Select Country",
+            theme: "bootstrap4",
+            allowClear: true
+        });
+
+    </script>
+}
+
+

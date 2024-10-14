@@ -1,0 +1,50 @@
+﻿@model IVSource.Models.IvsVisaPages
+
+@{
+    ViewData["Title"] = "Who Health Rules World-Wide";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminWebsite.cshtml";
+}
+
+<div class="container">
+    @{if (TempData["Message"] != null)
+        {
+            <h4 class="text-center" style="color:green;">@TempData["Message"]</h4>
+            <br />
+        }
+    }
+    <div class="col-md-10" style="margin:auto;">
+        <form method="post" asp-controller="IvsVisaPages" asp-action="WhoHealthRulesWorldWideEdit" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">URL</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="true">Enable</option>
+                    <option value="false">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

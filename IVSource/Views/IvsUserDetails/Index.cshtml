@@ -1,0 +1,130 @@
+@*@model IVSource.Models.IvsUserDetails*@
+@model ReflectionIT.Mvc.Paging.PagingList<IVSource.Models.IvsUserDetails>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.MVC.Paging
+@{
+    //ViewData["Title"] = "IvsUserDetails";
+    ViewData["Title"] = "Manage Users";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+@*<h2>ManageUsers</h2>*@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/ManageUsers.css" />
+</head>
+<body>
+    <div class="containers" style="width:95%;">
+        <br />
+        <div>
+            <p class="text-success" style="text-align: center">@TempData["result"]</p>
+        </div>
+        <div class="form-group row">
+            <br />
+            <br />
+            <div class="col-md-6">
+                @*<input type="submit" style="margin-right:2px;" class="btn btn-info" value="Add New User" onclick="window.open('@Url.Action("AddNewUser", "IvsUserDetails")')" />*@
+                <a asp-controller="IvsUserDetails" asp-action="AddNewUser" class="btn btn-info">Add New User</a>
+                <div style="padding-top:30px;">
+                    Total : @ViewBag.Total
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                @using (Html.BeginForm())
+                {
+                    <p class="ex1">
+
+                        @Html.TextBox("searchString")
+                        <input class="btn btn-default blue-button" type="submit" value="Search" />
+                    </p>
+                }
+
+            </div>
+        </div>
+        <div style="padding-top:20px;">
+            <label class="lead">Show entries &nbsp;</label>
+            @Html.DropDownList("rowsToShow", new List<SelectListItem>
+            {
+              new SelectListItem { Text = "10", Value = "10"},
+              new SelectListItem { Text = "25", Value = "25"},
+              new SelectListItem { Text = "50", Value = "50"},
+              new SelectListItem { Text = "100", Value = "100"}
+            })
+        </div>
+        <br />
+        <table style="width:100%" class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    @*<th>No.</th>*@
+                    <th>
+                        @Html.SortableHeaderFor(model => model.UserName)
+                    </th>
+                    <th> @Html.SortableHeaderFor(model => model.Name)</th>
+                    <th>@Html.SortableHeaderFor(model => model.Company)</th>
+                    <th> @Html.SortableHeaderFor(model => model.ValidTo)</th>
+                    <th>@Html.SortableHeaderFor(model => model.UserType)</th>
+                    <th>@Html.SortableHeaderFor(model => model.CreatedDate)</th>
+                    @*<th>@Html.SortableHeaderFor(model => model.IsEnable)</th>*@
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    @*<td>@obj.SerialNum</td>*@
+                    <td>@obj.UserName</td>
+                    <td>@obj.Name</td>
+                    @*<td>@obj.Company</td>*@
+                    <td>@Html.Raw(obj.Company)</td>
+                    <td>@obj.ValidTo</td>
+                    <td style="width: 15%">@obj.UserType</td>
+                    @*<td>@(obj.IsEnable == 1 ? "Active" : "InActive")</td>*@
+                    <td>@obj.CreatedDate</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group">
+                            <a asp-controller="IvsUserDetails" asp-action="Edit" asp-route-serialnum="@obj.SerialNum" class="btn btn-info">Edit</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav aria-label="Country Paging">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+        </nav>
+
+        <nav aria-label="Countries navigation example">
+            <vc:pager paging-list="@Model" />
+        </nav>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        
+        jQuery('#rowsToShow').change(function () {
+            var currentUrl = jQuery(location).attr('href');
+            var url;
+            if (currentUrl.indexOf("?") != -1) {
+                if (currentUrl.indexOf("rowsToShow") != -1) {
+                    var href = new URL(currentUrl);
+                    href.searchParams.set('rowsToShow', jQuery(this).val());
+                    url = href.toString();
+                }
+                else
+                    url = currentUrl + "&rowsToShow=" + jQuery(this).val();
+            }
+            else
+                url = currentUrl + "?rowsToShow=" + jQuery(this).val();
+            window.location.href = url;
+        });
+
+
+    </script>
+}
+
+

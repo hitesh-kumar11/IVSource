@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "International Help Address";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+<h2 style="color:black; margin-top:-2%;">International Help Address</h2>
+<div>
+    @foreach (var x in Model)
+    {
+        @foreach (var obj in x.helpaddress)
+        {
+        @if (obj.IsEnable == 1)
+        {
+        <button class="accordion">@obj.OfficeName, @obj.OfficeCity &nbsp; <span class="blkDD"> <i class="fa fa-caret-down"></i></span></button>
+        <div class="panel" style="display: none;">
+            <br />
+            @if (obj.OfficeName != null && obj.OfficeName != "")
+            {
+                <p><b>Name:</b>  @Html.DisplayFor(model => obj.OfficeName)</p>
+            }
+            @if (obj.OfficeAddress != null && obj.OfficeAddress != "")
+            {
+                <p><b>Address: </b>  @Html.DisplayFor(model => obj.OfficeAddress)</p>
+            }
+
+            @if (obj.OfficeCity != null && obj.OfficeCity != "")
+            {
+                <p><b>City:</b>  @Html.DisplayFor(model => obj.OfficeCity)</p>
+            }
+            @if (obj.OfficeCountry != null && obj.OfficeCountry != "")
+            {
+                <p><b>Country:</b>  @Html.DisplayFor(model => obj.OfficeCountry)</p>
+            }
+            @if (obj.OfficePhone != null && obj.OfficePhone != "")
+            {
+                <p><b>Telephone:</b>  @Html.DisplayFor(model => obj.OfficePhone)</p>
+            }
+            @if (obj.OfficeFax != null && obj.OfficeFax != "")
+            {
+                <p><b>Fax:</b>  @Html.DisplayFor(model => obj.OfficeFax)</p>
+            }
+            @if (obj.OfficeEmail != null && obj.OfficeEmail != "")
+            {
+                <p><b>Email:</b>  @Html.DisplayFor(model => obj.OfficeEmail)</p>
+            }
+            @if (obj.OfficeWebsite != null && obj.OfficeWebsite != "")
+            {
+                <p><b>Website:</b> <a href="//@obj.OfficeWebsite.Replace(" ", "")" target="_blank"> @Html.DisplayFor(model => obj.OfficeWebsite) </a><br /><br /></p>
+            }
+        </div>
+        }
+        }
+    }
+</div>

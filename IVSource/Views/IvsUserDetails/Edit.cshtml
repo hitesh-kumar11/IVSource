@@ -1,0 +1,214 @@
+﻿@model IVSource.Models.IvsUserTerminal
+@*@model IEnumerable<IVSource.Models.IvsUserDetails>*@
+@{
+    ViewData["Title"] = "Update Users";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@*<h2>UpdateManagUsers</h2>*@
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/ManageUsers.css" />
+
+</head>
+<body>
+    <div class="containers" style="width: 80%;">
+        <form method="post" asp-controller="IvsUserDetails" asp-action="Update">
+            <div class="p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="userDetail.SerialNum" />
+                <div>
+                    <p class="text-danger">@ViewBag.result</p>
+                </div>
+                <div>
+                    <input type="hidden" asp-for="userDetail.UserId" />
+                    <input type="hidden" asp-for="userDetail.UserType"/>
+                    <input type="hidden" asp-for="userDetail.IsEnable" />
+                    <input type="hidden" asp-for="userDetail.CreatedDate"/>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.UserName"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.UserName" class="form-control" />
+                                <span asp-validation-for="userDetail.UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Password"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Password" type="text" class="form-control" />
+                                <span asp-validation-for="userDetail.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @* add *@
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.CorporateId"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.CorporateId" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Name"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Name" class="form-control" />
+                                <span asp-validation-for="userDetail.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Designation"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Designation" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Company"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Company" class="form-control" />
+                                <span asp-validation-for="userDetail.Company" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Address"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Address" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.City"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Country"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Country" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Phone"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Phone" class="form-control" />
+                                <span asp-validation-for="userDetail.Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Fax"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Fax" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.Email"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.Email" class="form-control" />
+                                <span asp-validation-for="userDetail.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.ValidFrom"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.ValidFrom" class="form-control" />
+                                <span asp-validation-for="userDetail.ValidFrom" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.ValidTo"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.ValidTo" class="form-control" />
+                                <span asp-validation-for="userDetail.ValidTo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="userDetail.TerminalIdNo"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="userDetail.TerminalIdNo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-8">
+                                <input type="submit" class="btn btn-info w-100" value="Update" />
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    @* get terminal id list*@
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>S.N.</th>
+                <th>TERMINAL ID</th>
+                <th>IS USED</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 0;}
+            @foreach (var obj in Model.userDetailTerminalLists)
+            {
+                <tr>
+                    <td>
+                        @{ i++; }
+                        @i
+                    </td>
+                    <td>@obj.TerminalId</td>
+                    <td>@obj.IsUsed</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
+
+
+
+

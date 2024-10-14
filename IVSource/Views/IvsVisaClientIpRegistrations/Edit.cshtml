@@ -1,0 +1,107 @@
+﻿@model IVSource.Models.IvsVisaClientIpRegistration
+
+@{
+    ViewData["Title"] = "Client Ip Registration";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<div class="row" style="width: 100%;">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update </h2>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input asp-for="Id" class="form-control" type="hidden" />
+                <input asp-for="SerialNum" class="form-control" type="hidden" />
+                <label asp-for="Company" class="control-label"></label>
+                <select asp-for="Company" asp-items="@(new SelectList(Model.CompanyList,"CompanyName","CompanyName"))" class="form-control" hidden="hidden">
+            <option value="">Please select one</option>
+        </select>
+                @*<label asp-for="Company" class="control-label">@Model.Company</label>*@
+                <input class="form-control" value="@Model.Company" readonly="readonly" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <input asp-for="IpAddress" class="form-control" type="hidden" />
+            <span asp-validation-for="IpAddress" class="text-danger"></span>
+        </div>*@
+            <div class="form-group" id="divIPAddrBlock">
+                <label asp-for="IpAddress" class="control-label"></label>
+                <input asp-for="IpAddress" class="form-control inpIpAddressHid" type="hidden" />
+                <div class="clear"></div>
+                <input class="form-control inpIpAddress" id="firstIP" /><span class="Add"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>&nbsp;&nbsp;<span class="Remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
+                <div class="clear"></div>
+            </div>
+            <span class="text-danger spValidIP" style="display:none;">Please enter valid Ip Address</span>
+            <span asp-validation-for="IpAddress" class="text-danger"></span>
+            @*<div class="form-group">
+            <label asp-for="IsEnable" class="control-label"></label>
+            <select asp-for="IsEnable" class="form-control">
+                <option value="true">Enable</option>
+                <option value="false">Disable</option>
+            </select>
+            <span asp-validation-for="IsEnable" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Update" class="btn btn-default blue-button" onclick="return setIPAddress()" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $(".Add").on("click", function () {
+                    $("#divIPAddrBlock").append("<div><br><input class=\"form-control inpIpAddress\" /><br></div>");
+            });
+            $(".Remove").on("click", function () {
+                if ($(".inpIpAddress").length > 1) {
+                    $("#divIPAddrBlock").children().last().remove();
+                }
+            });
+            var data = $("#IpAddress").val();
+            var arr = data.split("#");
+            $.each(arr, function (index, value) {
+                var appendData = "";
+                if (index == 0) {
+                    $("#firstIP").val(value);
+                    //$("#firstIP").attr("data-")
+                }
+                else {
+                    $("#divIPAddrBlock").append("<div><br><input class=\"form-control inpIpAddress\" value='" + value + "' /><br></div>");
+
+                }
+            });
+        });
+        function setIPAddress() {
+            var inpIpAddressHidData = "";
+            $(".inpIpAddress").each(function (index) {
+                var val = $(this).val();
+                if ($(this).is(":visible")) {
+                    if (val != "") {
+                        inpIpAddressHidData += "#" + $(this).val();
+                    }
+                }
+            });
+            if (inpIpAddressHidData != "") {
+                $(".inpIpAddressHid").val(inpIpAddressHidData);
+                return true;
+            }
+            else {
+                $(".inpIpAddressHid").val("");
+                $(".spValidIP").show();
+                return false;
+            }
+        }
+    </script>
+}
+
+

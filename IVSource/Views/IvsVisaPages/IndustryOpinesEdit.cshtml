@@ -1,0 +1,70 @@
+﻿@model IVSource.Models.IvsVisaPages
+
+@{
+    ViewData["Title"] = "Industry Opines";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminWebsite.cshtml";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/richtexteditor/rte_theme_default.css" />
+    <script type="text/javascript" src="~/richtexteditor/rte.js"></script>
+    <script type="text/javascript" src='~/richtexteditor/plugins/all_plugins.js'></script>
+</head>
+<body>
+    <div class="containers">
+        @{if (TempData["Message"] != null)
+            {
+                <h4 class="text-center" style="color:green;">@TempData["Message"]</h4>
+                <br />
+            }
+        }
+        <form method="post" asp-controller="IvsVisaPages" asp-action="IndustryOpinesEdit">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+
+            <div class="form-group" style="background-color: rgb(248, 249, 249)">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" type="hidden" />
+                <div id="div_editor1">
+                    @System.Net.WebUtility.HtmlDecode(Model.Description)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="true">Enable</option>
+                    <option value="false">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-default blue-button" value="Update" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            var editor1 = new RichTextEditor("#div_editor1");
+            var divCustom = $("<div/>").html(("@System.Net.WebUtility.HtmlDecode(Model.Description)"));
+            editor1.setHTMLCode(divCustom.text());
+            editor1.attachEvent("change", function () {
+                document.getElementById("Description").value = editor1.getHTMLCode();
+            });
+        });
+    </script>
+}

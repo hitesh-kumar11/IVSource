@@ -1,0 +1,98 @@
+﻿@model IEnumerable<IVSource.Models.IvsVisaCountriesDiplomaticRepresentation>
+@{
+    ViewData["Title"] = "Diplomatic Representations";
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+
+<div id="id-1" class="penal_cont_area">
+    <div class="penal_cont">
+        <p style="color:black; font-size: 30px; margin-top: -18px; margin-bottom: 18px">Diplomatic Representations</p>
+        @foreach (var obj in Model)
+        {
+            if (obj.OfficeName != null && obj.OfficeName != "")
+            {
+                <b>Name : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeName)</label>
+                <br />
+            }
+
+            if (obj.OfficeAddress != null && obj.OfficeAddress != "")
+            {
+                <b>Address : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeAddress)</label>
+                <br />
+            }
+
+            if (obj.OfficeCity != null && obj.OfficeCity != "")
+            {
+                <b>City : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeCity)</label>
+                <br />
+            }
+
+            if (obj.OfficeCountry != null && obj.OfficeCountry != "")
+            {
+                <b>Country : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeCountry)</label>
+                <br />
+            }
+
+            if (obj.OfficePhone != null && obj.OfficePhone != "")
+            {
+                <b>Telephone : </b>
+                <label>@Html.DisplayFor(model => obj.OfficePhone)</label>
+                <br />
+            }
+
+            if (obj.OfficeFax != null && obj.OfficeFax != "")
+            {
+                <b>Fax : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeFax)</label>
+                <br />
+            }
+
+            if (obj.OfficeTimings != null && obj.OfficeTimings != "")
+            {
+                <b>Office Timings : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeTimings)</label>
+                <br />
+            }
+
+            if (obj.OfficeVisaTimings != null && obj.OfficeVisaTimings != "")
+            {
+                <b>Visa Timings : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeVisaTimings)</label>
+                <br />
+            }
+
+            if (obj.OfficeCollectionTimings != null && obj.OfficeCollectionTimings != "")
+            {
+                <b>Collection Timings : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeCollectionTimings)</label>
+                <br />
+            }
+
+            if (obj.OfficeEmail != null && obj.OfficeEmail != "")
+            {
+                <b>Email : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeEmail)</label>
+                <br />
+            }
+
+            if (obj.OfficeNotes != null && obj.OfficeNotes != "")
+            {
+                <b>Notes : </b>
+                <label>@Html.DisplayFor(model => obj.OfficeNotes)</label>
+                <br />
+            }
+
+            if (obj.TerritoryJurisdiction != null && obj.TerritoryJurisdiction != "")
+            {
+                <b>Territory Jurisdiction : </b>
+                <label>@Html.DisplayFor(model => obj.TerritoryJurisdiction)</label>
+                <br />
+                <br />
+            }
+        }
+    </div>
+</div>

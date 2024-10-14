@@ -1,0 +1,32 @@
+﻿@model IVSource.Models.HomePage
+
+@{
+    ViewData["Title"] = "OTPAuthentication";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div class="col-lg-8 login-form">
+    <div>
+        <h3>OTP Authentication</h3>
+        <div class="text-danger field-validation-error">@TempData["Message"]</div><br />
+        <form asp-action="OTPAuthentication">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input id="OTP" name="OTP" asp-for="@Model.login.OTP" class="form-control" placeholder="OTP" required="required" data-msg="Please Enter OTP" />
+            </div>
+            <div class="form-group">
+                <input asp-for="@Model.login.EMail" class="form-control" type="hidden" />
+                <input asp-for="@Model.login.UserName" class="form-control" type="hidden" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

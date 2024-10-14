@@ -1,0 +1,23 @@
+﻿@model IVSource.Models.IvsVisaCountries
+@{
+    ViewData["Title"] = "Welcome to IVSource!";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<article id="post-344" class="post-344 page type-page status-publish hentry">
+    <header class="entry-header"></header>
+    <div class="entry-content col-md-6">
+        <h3>Search Country</h3>
+        <form asp-action="CountryFactFinder" asp-controller="IvsVisaCountriesDetails" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select asp-for="CountryName" asp-items="@(new SelectList(ViewBag.listCities, "CountryName", "CountryName"))" class="form-control">
+                    <option> - select - </option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</article>

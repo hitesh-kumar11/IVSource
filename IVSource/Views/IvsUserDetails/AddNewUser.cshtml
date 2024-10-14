@@ -1,0 +1,188 @@
+﻿@model IVSource.Models.IvsUserDetails
+@{
+    ViewData["Title"] = "Add New User";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+@*<h2>AddNewUser</h2>*@
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/ManageUsers.css" />
+</head>
+<body>
+    <div class="containers" style="width: 80%;" >
+        <form method="post" asp-controller="IvsUserDetails" asp-action="Insert">
+            <div class="p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    <p class="text-danger">@ViewBag.result</p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="UserName"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Password"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Password" type="password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="CorporateId"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="CorporateId" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Name"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Designation"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Designation" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Company"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Company" class="form-control" />
+                                <span asp-validation-for="Company" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Address"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Address" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="City"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Country"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Country" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Phone"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Fax"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Fax" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Email"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="ValidFrom"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="ValidFrom" class="form-control" />
+                                <span asp-validation-for="ValidFrom" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="ValidTo"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="ValidTo" class="form-control" />
+                                <span asp-validation-for="ValidTo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="TerminalIdNo"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="TerminalIdNo" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-8">
+                                <input type="submit" class="btn btn-info w-100" value="Save" />
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

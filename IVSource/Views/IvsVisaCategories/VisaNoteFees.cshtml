@@ -1,0 +1,144 @@
+﻿@model IVSource.Models.IvsVisaNoteFeesList
+
+@{
+    ViewData["Title"] = Model.bCountryName;
+    Layout = "~/Views/Shared/_LayoutMemberPage.cshtml";
+}
+
+<div class="forum_row_rs">
+    <p style="color:black; font-size: 30px; margin-top: -18px; margin-bottom: 18px">Click Territory Required</p>
+    <p style="color:black; font-size: 30px; margin-top: -18px; margin-bottom: 18px">Visaa Noteeeeeeeeeeeee and Fees</p>
+    @foreach (var y in Model.countryDetailsInformation)
+    {
+        @Html.Raw(System.Net.WebUtility.HtmlDecode(@y.VisaInformation).Replace(@"\r\n\r\n", string.Empty))
+    }
+
+    @foreach (var x in Model.DistinctIvsVisaNotes)
+    {
+        <b>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategory))</b>
+        <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryInformation))</p>
+        <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryNotes))</p>
+        <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(@x.VisaCategoryRequirements))</p>
+
+        <table>
+            <tbody>
+                @foreach (var y in Model.OrderByIvsVisaNotesCat.Where(m => m.VisaCategoryCode == x.VisaCategoryId))
+                {
+                    <tr>
+                        <td style="width: 70%">@y.VisaCategoryOption</td>
+                        <td>
+                            @y.VisaCategoryOptionAmountInr
+                            @if (y.VisaCategoryOptionAmountOther != null && y.VisaCategoryOptionAmountOther != "")
+                            {
+                                <label>(</label>@y.VisaCategoryOptionAmountOther<label>)</label>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>
+            <b>Visa Forms For : </b>
+            @foreach (var y in Model.DistinctIvsVisaNotesForm.Where(m => m.VisaCategoryCode == x.VisaCategoryId))
+            {
+                <a href="~/Uploads/FormPath/@y.VisaCategoryFormPath">@y.VisaCategoryForm,</a>
+            }
+        </p>
+        <a href="#" data-toggle="modal" data-target="#mymodel"><img src="~/images/email.png" /></a> <img src="~/images/phone.png" style="float:right" />
+        <br />
+        <br />
+        <div class="modal fade" id="mymodel" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 800px">
+                    <div class="modal-body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td valign="top" align="right" style="width: 27%; height: 9px"></td>
+                                    <td valign="top" align="center" style="width: 441px; color: red; height: 9px">E-Mail Details</td>
+                                    <td valign="top" style="height: 9px; width: 247px; text-align: right">
+                                        <a href="javascript:void(0)" style="padding: 0 10px 0 0;" data-dismiss="modal">
+                                            Close
+                                        </a>
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                    <td valign="top" align="right" style="width: 27%; height: 9px">&nbsp; Sender Email ID: </td>
+                                    <td valign="top" style="width: 441px; height: 9px;">
+                                        <input typer="text" style="width: 432px" id="p_txtFrom" name="txtFrom" />
+                                    </td>
+                                    <td valign="top" style="height: 9px; width: 247px">
+                                        <span style="color: red; visibility: hidden" id="RequiredFieldValidator1">*</span>
+                                        <span style="display: inline-block; color: red; width: 112px; visibility: hidden" id="RegularExpressionValidator_email">Invalid Email ID</span>
+                                    </td>
+                                </tr>*@
+                                <tr>
+                                    <td valign="top" height="10" align="right" style="width: 27%">&nbsp;&nbsp; Recipient Email ID:</td>
+                                    <td valign="top" height="20" style="width: 441px">
+                                        <input type="text" style="width: 432px;" id="p_email" name="email" />
+                                    </td>
+                                    <td valign="top" height="20" style="width: 247px">
+                                        <span style="color: red; visibility: hidden" id="RequiredFieldValidator2">*</span>
+                                        <span style="display: inline-block; color: red; width: 112px; visibility: hidden" id="RegularExpressionValidatorReciID">Invalid Recipient Email ID</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" height="10" align="right" style="width: 27%">&nbsp; Recipient CC Email ID: </td>
+                                    <td valign="top" height="20" style="width: 441px">
+                                        <input type="text" style="width: 432px" id="p_txtCC" name="txtCC" />
+                                    </td>
+                                    <td valign="top" height="20" style="width: 247px">
+                                        <span style="color: red; visibility: hidden" id="RegularExpressionValidator1">Invalid CC Email ID</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" height="10" align="right" style="width: 27%">&nbsp; Subject:</td>
+                                    <td valign="top" height="20" style="width: 441px">
+                                        <input type="text" style="width: 432px;" id="p_txtSubject" value="Visa Information" name="txtSubject" />
+                                    </td>
+                                    <td valign="top" height="20" style="width: 247px"></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" align="right" style="width: 27%; height: 7px">&nbsp; Your Remarks, If any: </td>
+                                    <td valign="top" style="width: 441px; height: 7px">
+                                        <textarea type="text" style="height: 100px; width: 432px;" id="p_txtMessage" cols="20" rows="2" name="txtMessage"></textarea>
+                                    </td>
+                                    <td valign="top" style="height: 7px; width: 247px"></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" align="right" style="width: 27%; height: 20px"></td>
+                                    <td valign="top" align="center" style="width: 441px; height: 20px">
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="submit" onclick="SendEmail()" id="sendEmail" value="Send Mail" name="Button1" />
+                                    </td>
+                                    <td valign="top" style="height: 20px; width: 247px"></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" align="right" style="width: 27%; height: 20px"></td>
+                                    <td valign="top" align="center" style="width: 441px; color: red; height: 20px">
+                                        When you send this mail, It will display total information on Visa category selected with a link to the Visa Form
+                                    </td>
+                                    <td valign="top" style="height: 20px; width: 247px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="p_txtContent">
+                            <div style="color: #FF0000; font-weight: bold; font-size: 30px">@Model.bCountryName</div>
+                            <div class="forum_row_rs" id="amit">
+                                @foreach (var r in Model.DistinctIvsVisaNotes)
+                                {
+                                    <b>@Html.Raw(System.Net.WebUtility.HtmlDecode(@r.VisaCategory))</b>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript" src="~/js/SendEmail.js"></script>
+
+

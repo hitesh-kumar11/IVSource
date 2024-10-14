@@ -1,0 +1,85 @@
+﻿@model IVSource.Models.IvsVisaCountriesHolidays
+
+@{
+    ViewData["Title"] = "HOLIDAYS";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<script src="https://cdn.quilljs.com/1.1.3/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.1.3/quill.min.js"></script>
+<script src="https://cdnjs.cloudfare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<link href="https://cdn.quilljs.com/1.1.3/quill.snow.css" rel="stylesheet" />
+<link href="https://cdn.quilljs.com/1.1.3/quill.bubble.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Add</h2>
+        <hr />
+        <form asp-action="Add" asp-controller="IvsVisaCountriesHolidays" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="HolidayId" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+
+            <div class="form-group">
+                <label asp-for="HolidayName" class="control-label"></label>
+                <input asp-for="HolidayName" type="hidden" value="" />
+                <div id="div_editor"></div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default blue-button" id="save" />
+            </div>
+
+            <div>
+                <a asp-action="Index" asp-controller="IvsVisaCountriesHolidays">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'script': 'sub' }, { 'script': 'super' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            [{ 'direction': 'rtl' }],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            ['image', 'video', 'formula'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }]
+        ];
+
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+
+        $(document).ready(function () {
+            var editor = new RichTextEditor("#div_editor");
+            editor.attachEvent("change", function () {
+                document.getElementById("HolidayName").value = editor.getHTMLCode();
+            });
+        });
+
+    </script>
+}
+

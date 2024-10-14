@@ -1,0 +1,67 @@
+﻿@model IVSource.Models.IvsVisaInformation
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IvsVisaInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryIso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryIso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisaInformation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VisaInformation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisaGeneralInformation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VisaGeneralInformation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEnable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsEnable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SerialNum">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

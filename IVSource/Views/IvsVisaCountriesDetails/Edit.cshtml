@@ -1,0 +1,89 @@
+﻿@model IVSource.Models.IvsVisaCountriesDetails
+
+@{
+    ViewData["Title"] = "Country Fact Finder";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Update </h2>
+        <hr />
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SerialNum" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+            <div class="form-group">
+                <label asp-for="CountryLocation" class="control-label"></label>
+                <input asp-for="CountryLocation" class="form-control" />
+                <span asp-validation-for="CountryLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryTime" class="control-label"></label>
+                <input asp-for="CountryTime" class="form-control" />
+                <span asp-validation-for="CountryTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryCapital" class="control-label"></label>
+                <input asp-for="CountryCapital" class="form-control" />
+                <span asp-validation-for="CountryCapital" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryLanguages" class="control-label"></label>
+                <input asp-for="CountryLanguages" class="form-control" />
+                <span asp-validation-for="CountryLanguages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryArea" class="control-label"></label>
+                <input asp-for="CountryArea" class="form-control" />
+                <span asp-validation-for="CountryArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryPopulation" class="control-label"></label>
+                <input asp-for="CountryPopulation" class="form-control" />
+                <span asp-validation-for="CountryPopulation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryNationalDay" class="control-label"></label>
+                <input asp-for="CountryNationalDay" class="form-control" />
+                <span asp-validation-for="CountryNationalDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryCurrency" class="control-label"></label>
+                <input asp-for="CountryCurrency" class="form-control" />
+                <span asp-validation-for="CountryCurrency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryClimate" class="control-label"></label><br />
+                <textarea asp-for="CountryClimate" rows="5" cols="100"> @System.Net.WebUtility.HtmlDecode(Model.CountryClimate)</textarea>
+                <span asp-validation-for="CountryClimate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryWorldFactBook" class="control-label"></label>
+                <input asp-for="CountryWorldFactBook" class="form-control" />
+                <span asp-validation-for="CountryWorldFactBook" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="CountryFlag" class="control-label"></label> : @Model.CountryFlag <br />
+                <input asp-for="CountryFlag" class="form-control" type="file" />
+                <span asp-validation-for="CountryFlag" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="IsEnable" class="control-label"></label>
+                <select asp-for="IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="IsEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default blue-button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

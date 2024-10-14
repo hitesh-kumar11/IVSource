@@ -1,0 +1,149 @@
+﻿@model IVSource.Models.IvsVisaCategoriesOptionsObj
+
+@{
+    ViewData["Title"] = "VISA FEES";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminVisaDetails.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10" style="margin:auto;">
+        <h2>Add</h2>
+        <hr />
+        <form asp-action="Add" asp-controller="IvsVisaCategoriesOptions" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="categoriesOptions.SerialNum" />
+            <input type="hidden" id="CountryName" name="CountryName" value="@TempData.Peek("CountryName")" />
+
+            <div class="form-group">
+                <label class="control-label">City Name</label>
+                <select id="CityId" name="CityId" asp-for="categoriesOptions.CityName" required class="form-control" onchange="SelectCityId(this.val)">
+                    <option value="">Please Select</option>
+                    <option value="BLR8DL9D9H8">Bangalore</option>
+                    <option value="CCUX67W7Z3M">Kolkata</option> 
+                    <option value="DELY79S2B5V">Delhi</option>
+                    <option value="HYD4FY5Q8B6">Hyderabad</option>
+                    <option value="IXAT12A9Q8F">Agartala</option>
+                    <option value="MAAZ8W9T98V">Chennai</option>
+                    <option value="MUMG7U9M52S">Mumbai</option>
+                    <option value="PNY4LC7R46E">Pondicherry</option>
+                    <option value="TRVV92DR4E8">Thiruvananthapuram</option>
+                </select>
+                <span asp-validation-for="categoriesOptions.CityName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Categories" class="control-label"></label>
+                <select id="VisaCategoryCode" name="VisaCategoryCode" asp-for="categoriesOptions.VisaCategoryCode" class="form-control" onchange="SelectCategoryId(this.val)">
+                    @*<option>Please select one</option>*@
+                </select>
+                <span id="errorMsgSpan" asp-validation-for="categoriesOptions.VisaCategoryCode" class="text-danger"></span>                
+            </div>
+
+            <div class="form-group">
+                <label asp-for="categoriesOptions.VisaCategoryOption" class="control-label"></label>
+                <input asp-for="categoriesOptions.VisaCategoryOption" class="form-control" />
+                <span asp-validation-for="categoriesOptions.VisaCategoryOption" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="categoriesOptions.VisaCategoryOptionAmountInr" class="control-label"></label>
+                <input asp-for="categoriesOptions.VisaCategoryOptionAmountInr" class="form-control"  type="number"/>
+                <span asp-validation-for="categoriesOptions.VisaCategoryOptionAmountInr" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="categoriesOptions.VisaCategoryOptionAmountOther" class="control-label"></label>
+                <input asp-for="categoriesOptions.VisaCategoryOptionAmountOther" class="form-control" type="number" />
+                <span asp-validation-for="categoriesOptions.VisaCategoryOptionAmountOther" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="categoriesOptions.IsEnable" class="control-label"></label>
+                <select asp-for="categoriesOptions.IsEnable" class="form-control">
+                    <option value="1">Enable</option>
+                    <option value="0">Disable</option>
+                </select>
+                <span asp-validation-for="categoriesOptions.IsEnable" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default blue-button" onclick="validateDropdown()" />
+            </div>
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        $(document).ready(function () {
+            $("select[name='VisaCategoryCode']").val("Select One");
+        });
+
+        function SelectCityId() {
+            //categoriesForms.VisaCategoryCode
+            debugger;
+
+            //var CategoryID = $("#CityId").val(); cityId
+            let cityId = $("#CityId option:selected").val();
+            let postdata = '{"cityId": "' + cityId + '"}';  //'{"bankId": "' + bankid + '" }',  
+            
+           
+            $.ajax({
+                type: "POST",
+                url: "../IvsVisaCategoriesOptions/AddCategory",               
+                data: JSON.parse(postdata),
+                datatype: "Json",
+                success: function (data) {
+                    debugger;
+                    var IvsVisaCategoriesForms = data;
+                    var items = "";
+                    $("#VisaCategoryCode").html(''); 
+                    
+                    $.each(IvsVisaCategoriesForms, function (i, item) { 
+                        //if ($('#VisaCategoryCode').has('option').length > 0)
+                            $("#VisaCategoryCode").append($("<option></option>").val(item.CategoryCode).html(item.Category));
+                        //else
+                            //$("#VisaCategoryCode").append($("<option></option>").val("Please Select One"));
+                            //alert("Blank");
+                    }); 
+                    SelectCategoryId();
+                }
+            });            
+        }
+
+        function SelectCategoryId() {
+
+            let catId = $("#VisaCategoryCode").val();
+            let postdata = '{"categoryId": "' + catId + '"}';  
+
+
+            $.ajax({
+                type: "POST",
+                url: "../IvsVisaCategoriesOptions/FindCategory",
+                data: JSON.parse(postdata),
+                datatype: "Json",
+                success: function (data) {
+                                       
+                }
+            });
+
+
+        }
+
+        function validateDropdown() {                    
+            var selectedval = $('#VisaCategoryCode').val();
+            //alert(selectedval);            
+            if (selectedval == null) {
+                //alert("alert1");
+                $("#errorMsgSpan").text("Please select a category");
+                return false;
+            }           
+        }
+    </script>
+}

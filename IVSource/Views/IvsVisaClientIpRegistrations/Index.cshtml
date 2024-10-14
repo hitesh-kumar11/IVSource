@@ -1,0 +1,106 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<IVSource.Models.IvsVisaClientIpRegistration>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Client IP Registration";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-10" style="margin:auto;">
+
+        @{if (TempData["Message"] != null)
+            {
+                <h4 class="text-center" style="color:green;">@TempData["Message"]</h4>
+                <br />
+            }
+        }
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="submit" style="margin-right:2px;" class="btn btn-info" value="Add New Client IP" onclick="window.open('@Url.Action("Create")', '_self')" />
+                <div style="padding-top:30px;">
+                    Total : @ViewBag.Total
+                 </div>
+                    <label class="lead">  Show entries &nbsp;</label>
+                    @Html.DropDownList("rowsToShow", new List<SelectListItem>
+                    {
+                      new SelectListItem { Text = "10", Value = "10"},
+                      new SelectListItem { Text = "25", Value = "25"},
+                      new SelectListItem { Text = "50", Value = "50"},
+                      new SelectListItem { Text = "100", Value = "100"}
+                    })
+                </div>
+                <div class="col-sm-6 text-right">
+                    <form method="get" class="form-inline" style="display: inline-block;">
+                        <input name="filter" class="form-control"
+                               value="@Model.RouteValue["Filter"]" />  &nbsp; &nbsp;
+                        <button type="submit" class="btn btn-info">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <div class="clear"></div>
+        <br />
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.SortableHeaderFor(model => model.Company)
+                    </th>
+                    @*<th>
+                        @Html.SortableHeaderFor(model => model.IpAddress)
+                    </th>*@
+                    <th>
+                        @Html.SortableHeaderFor(model => model.IsEnable)
+                    </th>
+                    <th style="color: #43b8c8">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.IpAddress)
+                    </td>*@
+                    <td>
+                        @(Convert.ToBoolean(item.IsEnable) ? "Yes" : "No")
+                    </td>
+                    <td class="subsBtn">
+                        <a asp-action="Edit" asp-route-SerialNum="@item.SerialNum" asp-route-Id="@item.Id">Edit</a>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>*@
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <nav aria-label="pagination">
+            <vc:pager paging-list="@Model" />
+        </nav>
+        @section Scripts {
+            <script>
+                jQuery('#rowsToShow').change(function () {
+                    var currentUrl = jQuery(location).attr('href');
+                    var url;
+                    if (currentUrl.indexOf("?") != -1) {
+                        if (currentUrl.indexOf("rowsToShow") != -1) {
+                            var href = new URL(currentUrl);
+                            href.searchParams.set('rowsToShow', jQuery(this).val());
+                            url = href.toString();
+                        }
+                        else
+                            url = currentUrl + "&rowsToShow=" + jQuery(this).val();
+                    }
+                    else
+                        url = currentUrl + "?rowsToShow=" + jQuery(this).val();
+                    window.location.href = url;
+                });
+            </script>
+        }
+    </div>
+</div>

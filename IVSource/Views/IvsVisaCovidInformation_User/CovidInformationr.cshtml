@@ -1,0 +1,72 @@
+﻿@model IEnumerable<IVSource.Models.HomePage>
+@{
+    ViewData["Title"] = "Covid Information";
+    Layout = "~/Views/Shared/_LayoutMemberPageCountries.cshtml";
+}
+@section CustomStyles {
+
+    <style>
+        table, .table td, .table th {
+            border: 1px solid #cccccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #cccccc;
+        }
+
+        .accordion {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            transition: 1s;
+            padding-top: 4px !important;
+            padding-bottom: 4px !important;
+            margin: 0;
+        }
+
+            .active, .accordion:hover {
+                background-color: #ccc;
+            }
+
+        .panelAcc {
+            display: none;
+            overflow: hidden;
+        }
+
+        .panelAir {
+            display: block;
+            overflow: hidden;
+        }
+
+        i.fa.fa-sort-desc {
+            margin-left: 10px;
+            bottom: 3px;
+            position: relative;
+        }
+
+        .headLeft {
+            float: left;
+        }
+
+        .headRight {
+            text-align: right;
+        }
+
+        .headRight, .headLeft {
+            width: 50%;
+            display: inline-block;
+            padding: 0 12px;
+        }
+    </style>
+}
+<div id="CovidData">
+</div>
+
+@section Scripts {
+    <script src="~/js/CovidData.js" script type="text/javascript"></script>
+    <script>
+        GetCovidData("@ViewBag.CountryIso");
+    </script>
+}
